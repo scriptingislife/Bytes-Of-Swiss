@@ -1,2 +1,2 @@
-# Infosec King Of The Hill
-Infosec King Of The Hill experiment
+# Infosec King of the Hill
+Infosec King of the Hill experiment
