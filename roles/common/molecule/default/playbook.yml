@@ -1,0 +1,5 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - include_tasks: ../../tasks/services/redis/install.yml
