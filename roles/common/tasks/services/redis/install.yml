@@ -1,45 +1,32 @@
 ---
-- name: Test if redis command works
-  command: redis-cli ping
-  register: rdtestping
-  ignore_errors: true
-
-- fail:
-    msg: "Redis is already up and running"
-  when: not rdtestping.failed
-
-- name: Make sure 'make' is installed on Debian
-  package:
-    name: build-essential
-    state: present
+- name: Update apt and install redis
+  apt:
+    name: redis-server
+    update_cache: true
   when: ansible_os_family == "Debian"
 
-- name: Make sure 'make is installed' on RedHat
+- name: Update yum and install epel-release
   yum:
-    name: "@Development tools"
+    name: "epel-release"
     state: present
+    update_cache: true
   when: ansible_os_family == "RedHat"
 
-- name: Download and untar redis tar.gz file
-  unarchive:
-    src: http://download.redis.io/redis-stable.tar.gz
-    dest: /tmp
-    remote_src: true
-
-- name: Make redis
-  make:
-    chdir: /tmp/redis-stable
-    target: install
-  become: true
+- name: Update yum and install redis
+  yum:
+    name: "redis"
+    state: present
+    update_cache: true
+  when: ansible_os_family == "RedHat"
 
 - name: Start redis-server
-  shell: redis-server
-  async: 10
+  command: redis-server
+  register: redis_started
+  async: 2592000
   poll: 0
-  register: rdstart
 
 - name: Test redis status
   command: redis-cli ping
   register: rdping
   failed_when: rdping.stdout != "PONG"
-  when: not rdstart.failed
+  when: redis_started.failed == false

@@ -16,6 +16,7 @@ provisioner:
 scenario:
   name: default
 verifier:
-  name: testinfra
+  name: goss
   lint:
-    name: flake8
+    name: yamllint
+
