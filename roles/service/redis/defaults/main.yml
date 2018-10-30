@@ -1,0 +1,3 @@
+---
+# defaults file for redis
+redis_port: 6379

@@ -1,0 +1,24 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+lint:
+  name: yamllint
+platforms:
+  - name: redis_cnt7
+    image: centos:7
+  - name: redis_ubnt
+    image: ubuntu:16.04
+provisioner:
+  name: ansible
+  lint:
+    name: ansible-lint
+    options:
+      x: ["ANSIBLE0002", "ANSIBLE0012"]
+scenario:
+  name: default
+verifier:
+  name: goss
+  lint:
+    name: yamllint
