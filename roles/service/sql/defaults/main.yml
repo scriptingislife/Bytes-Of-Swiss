@@ -1,4 +1,5 @@
 ---
 # defaults file for sql
 server_type: mysql
+#server_type: mariadb
 root_passwd: changeme

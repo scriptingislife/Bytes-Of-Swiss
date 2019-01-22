@@ -11,3 +11,4 @@
     name: '{{ db_name }}'
     state: import
     target: /tmp/db.sql
+  become: true
