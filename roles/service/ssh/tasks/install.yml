@@ -1,2 +1,21 @@
 ---
 # install the ssh service
+- name: Install SSH server
+  apt:
+    name: openssh-server
+    update_cache: true
+  when: ansible_os_family == "Debian"
+  become: true
+
+- name: Install SSH server
+  yum:
+    name: openssh-server
+    update_cache: true
+  when: ansible_os_family == "RedHat"
+  become: true
+
+- name: Start sshd service
+  service:
+    name: sshd
+    enabled: true
+    state: started

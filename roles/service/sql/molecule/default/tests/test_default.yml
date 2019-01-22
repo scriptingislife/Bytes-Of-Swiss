@@ -1,8 +1,6 @@
 # Molecule managed
 
 ---
-file:
-  /etc/hosts:
-    exists: true
-    owner: root
-    group: root
+port:
+  tcp:3306:
+    listening: true

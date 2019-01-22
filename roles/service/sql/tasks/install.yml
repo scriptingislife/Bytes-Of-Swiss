@@ -1,2 +1,30 @@
 ---
 # install the SQL service
+- name: Install SQL server with apt
+  apt:
+    name: ['{{ server_type }}-server', 'python-pip', 'python-setuptools', 'libmysqlclient-dev']
+    update_cache: true
+  when: ansible_os_family == "Debian"
+  become: true
+
+- name: Install SQL server with yum
+  yum:
+    name: ['{{ server_type }}-server', 'python-pip', 'python-setuptools']
+    update_cache: true
+  when: ansible_os_family == "RedHat"
+  become: true
+
+- name: Install MySQL-python with pip
+  pip:
+    name: MySQL-python
+  become: true
+
+- name: Change root user password
+  mysql_user:
+    name: root
+    password: "{{ root_passwd }}"
+    priv: "*.*:ALL,GRANT"
+    host_all: true
+    check_implicit_admin: true
+  become: true
+  ignore_errors: true

@@ -1,0 +1,15 @@
+---
+# insecure root logicmonitor
+- name: PermitRootLogin yes
+  lineinfile:
+    path: '{{ sshd_config }}'
+    regexp: '^PermitRootLogin'
+    line: 'PermitRootLogin yes'
+  become: true
+
+- name: PermitEmptyPasswords yes
+  lineinfile:
+    path: '{{ sshd_config }}'
+    regexp: '^PermitEmptyPasswords'
+    line: 'PermitEmptyPasswords yes'
+  become: true
