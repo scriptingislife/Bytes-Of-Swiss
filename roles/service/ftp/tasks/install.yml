@@ -1,0 +1,22 @@
+---
+# install the ftp service
+- name: Update apt and install vsftp server
+  apt:
+    name: vsftpd
+    update_cache: true
+  when: ansible_os_family == "Debian"
+  become: true
+
+- name: Update yum and install vsftp server
+  yum:
+    name: vsftpd
+    update_cache: true
+  when: ansible_os_family == "RedHat"
+  become: true
+
+- name: Start ftp server
+  service:
+    name: vsftpd
+    enabled: true
+    state: started
+  become: true

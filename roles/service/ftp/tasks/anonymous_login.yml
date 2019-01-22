@@ -1,0 +1,14 @@
+---
+# allow anonymous login
+- name: Change config file
+  lineinfile:
+    path: "{{ config_file }}"
+    regexp: "^anonymous_enable="
+    line: "anonymous_enable=YES"
+  become: true
+
+- name: Restart ftp service
+  service:
+    name: vsftpd
+    state: restarted
+  become: true

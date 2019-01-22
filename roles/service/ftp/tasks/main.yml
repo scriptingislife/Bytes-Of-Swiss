@@ -1,2 +1,7 @@
 ---
 # tasks file for ftp
+- name: Install the service
+  include_tasks: install.yml
+
+- name: Enable anonymous login
+  include_tasks: anonymous_login.yml

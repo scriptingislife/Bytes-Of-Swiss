@@ -1,8 +1,15 @@
-# Molecule managed
-
 ---
 file:
-  /etc/hosts:
+  /etc/vsftpd.conf:
     exists: true
     owner: root
     group: root
+
+service:
+  vsftpd:
+    enabled: true
+    running: true
+
+port:
+  tcp6:21:
+    listening: true

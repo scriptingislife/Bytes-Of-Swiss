@@ -2,12 +2,17 @@
 dependency:
   name: galaxy
 driver:
-  name: docker
+  name: vagrant
+  provider:
+    name: virtualbox
 lint:
   name: yamllint
 platforms:
   - name: instance
-    image: centos:7
+    instance_raw_config_args:
+      - "vm.network 'forwarded_port', guest: 21, host: 2121"
+      - "vm.network 'forwarded_port', guest: 20, host: 2020"
+    box: ubuntu/xenial64
 provisioner:
   name: ansible
   lint:

@@ -1,2 +1,3 @@
 ---
 # defaults file for ftp
+config_file: /etc/vsftpd.conf
