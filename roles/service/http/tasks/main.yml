@@ -2,3 +2,6 @@
 # tasks file for http
 - name: Install the service
   include_tasks: install.yml
+
+- name: Install and configure PHP
+  include_tasks: install_php.yml

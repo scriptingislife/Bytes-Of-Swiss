@@ -1,0 +1,27 @@
+---
+- name: Install PHP with apt
+  apt:
+    name: ['php-fpm', 'php-mysql']
+    update_cache: true
+  when: ansible_os_family == "Debian"
+  become: true
+
+- name: Install PHP with yum
+  yum:
+    name: ['php-fpm', 'php-mysql']
+    update_cache: true
+  when: ansible_os_family == "RedHat"
+  become: true
+
+- name: Copy config file
+  copy:
+    src: files/nginx/default_php.conf
+    dest: /etc/nginx/sites-available/default
+  when: server_type == "nginx"
+  become: true
+
+- name: Copy phpinfo page
+  copy:
+    src: files/phpinfo.php
+    dest: /var/www/html/phpinfo.php
+  become: true

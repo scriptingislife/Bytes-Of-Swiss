@@ -1,5 +1,5 @@
 ---
 # defaults file for http
-server_type: nginx
+server_type: apache2
 apache2_conf_file: /etc/apache2/apache2.conf
 nginx_conf_file: /etc/nginx/nginx.conf

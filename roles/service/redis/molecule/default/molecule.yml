@@ -2,20 +2,20 @@
 dependency:
   name: galaxy
 driver:
-  name: docker
+  name: vagrant
+  provider:
+    name: virtualbox
 lint:
   name: yamllint
 platforms:
-  - name: redis_cnt7
-    image: centos:7
-  - name: redis_ubnt
-    image: ubuntu:16.04
+  - name: instance
+    box: ubuntu/xenial64
+    instance_raw_config_args:
+      - "vm.network 'forwarded_port', guest: 6379, host: 6379"
 provisioner:
   name: ansible
   lint:
     name: ansible-lint
-    options:
-      x: ["ANSIBLE0002", "ANSIBLE0012"]
 scenario:
   name: default
 verifier:
