@@ -1,27 +1,79 @@
 ---
-- name: Install PHP with apt
+- name: Install Apache PHP module
   apt:
-    name: ['php-fpm', 'php-mysql']
+    name: 'libapache2-mod-fastcgi'
     update_cache: true
-  when: ansible_os_family == "Debian"
   become: true
 
-- name: Install PHP with yum
-  yum:
-    name: ['php-fpm', 'php-mysql']
-    update_cache: true
-  when: ansible_os_family == "RedHat"
+- name: Add PHP repository
+  apt_repository:
+    repo: ppa:ondrej/php
   become: true
 
-- name: Copy config file
+- name: Install PHP
+  apt:
+    name: ['php7.2', 'php7.2-fpm']
+    update_cache: true
+  become: true
+
+- name: a2enmod FastCGI
+  apache2_module:
+    name: '{{ item }}'
+  become: true
+  with_items:
+    - 'actions'
+    - 'fastcgi'
+    - 'alias'
+    - 'proxy_fcgi'
+
+- name: Update dir.conf
   copy:
-    src: files/nginx/default_php.conf
-    dest: /etc/nginx/sites-available/default
-  when: server_type == "nginx"
+    src: files/apache/dir.conf
+    dest: /etc/apache2/mods-enabled/dir.conf
   become: true
 
 - name: Copy phpinfo page
   copy:
-    src: files/phpinfo.php
-    dest: /var/www/html/phpinfo.php
+    src: files/info.php
+    dest: /var/www/html/info.php
   become: true
+
+- name: Copy default sites-available page
+  copy:
+    src: files/apache/000-default.conf
+    dest: /etc/apache2/sites-available/000-default.conf
+  become: true
+
+- name: Restart apache2
+  service:
+    name: apache2
+    state: restarted
+  become: true
+
+
+# - name: Install PHP with apt
+#   apt:
+#     name: ['php-fpm', 'php-mysql']
+#     update_cache: true
+#   when: ansible_os_family == "Debian"
+#   become: true
+# 
+# - name: Install PHP with yum
+#   yum:
+#     name: ['php-fpm', 'php-mysql']
+#     update_cache: true
+#   when: ansible_os_family == "RedHat"
+#   become: true
+# 
+# - name: Copy config file
+#   copy:
+#     src: files/nginx/default_php.conf
+#     dest: /etc/nginx/sites-available/default
+#   when: server_type == "nginx"
+#   become: true
+# 
+# - name: Copy phpinfo page
+#   copy:
+#     src: files/phpinfo.php
+#     dest: /var/www/html/phpinfo.php
+#   become: true
