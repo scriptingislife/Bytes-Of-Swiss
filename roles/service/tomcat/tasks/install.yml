@@ -44,6 +44,18 @@
     recurse: true
   become: true
 
+- name: Copy users file to tomcat directory
+  copy:
+    src: files/tomcat-users.xml
+    dest: /opt/tomcat/conf/tomcat-users.xml
+  become: true
+
+- name: Copy IP restriction-less context.xml file
+  copy:
+    src: files/context.xml
+    dest: /opt/tomcat/webapps/host-manager/META-INF
+  become: true
+
 - name: Copy service file
   copy:
     src: files/tomcat.service
