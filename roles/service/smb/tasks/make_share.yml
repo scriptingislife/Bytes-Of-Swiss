@@ -1,0 +1,28 @@
+---
+- name: Create directory
+  file:
+    path: '{{ share_path }}'
+    state: directory
+  become: true
+
+- name: Add share config to smb.conf
+  blockinfile:
+  # TODO: Change to path:
+    dest: '{{ smb_conf }}'
+    backup: true
+    marker: '# {mark} SHARE'
+    block: |
+      [{{ share_name }}]
+      path = {{ share_path }}
+      browsable = {{ share_browsable }}
+      writeable = {{ share_writeable }}
+      guest ok = {{ share_guestok }}
+      read only = {{ share_readonly }}
+  become: true
+
+- name: Restart smb service
+  service:
+    name: smbd
+    enabled: true
+    state: restarted
+  become: true
