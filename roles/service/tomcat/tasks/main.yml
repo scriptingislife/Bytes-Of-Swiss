@@ -1,0 +1,4 @@
+---
+# tasks file for tomcat
+- name: Install the service
+  include_tasks: install.yml

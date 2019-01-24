@@ -1,0 +1,59 @@
+---
+- name: Install Java with apt
+  apt:
+    name: default-jdk
+    update_cache: true
+  when: ansible_os_family == "Debian"
+  become: true
+
+- name: Install Java with yum
+  yum:
+    name: default-jdk
+    update_cache: true
+  when: ansible_os_family == "RedHat"
+  become: true
+
+- name: Create tomcat group
+  group:
+    name: tomcat
+    state: present
+  become: true
+
+- name: Create tomcat user
+  user:
+    name: tomcat
+    shell: /sbin/tomcat
+    group: tomcat
+    home: /opt/tomcat
+  become: true
+
+- name: Extract tomcat tar.gz
+  unarchive:
+    src: http://us.mirrors.quenda.co/apache/tomcat/tomcat-9/v9.0.14/bin/apache-tomcat-9.0.14.tar.gz 
+    dest: /opt/tomcat
+    extra_opts: [--strip-components=1]
+    remote_src: true
+    owner: tomcat
+  become: true
+
+- name: Set directory ownership to tomcat group
+  file:
+    path: '{{ tomcat_dir }}'
+    owner: tomcat
+    group: tomcat
+    recurse: true
+  become: true
+
+- name: Copy service file
+  copy:
+    src: files/tomcat.service
+    dest: /etc/systemd/system/tomcat.service
+  become: true
+
+- name: Reload systemd and start tomcat service
+  systemd:
+    daemon_reload: true
+    name: tomcat
+    enabled: true
+    state: started
+  become: true

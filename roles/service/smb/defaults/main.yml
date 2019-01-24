@@ -1,3 +1,8 @@
 ---
 # defaults file for smb
 smb_conf: '/etc/samba/smb.conf'
+share_name: 'Test Share'
+share_browsable: 'yes'
+share_writeable: 'yes'
+share_guestok: 'yes'
+share_readonly: 'no'
