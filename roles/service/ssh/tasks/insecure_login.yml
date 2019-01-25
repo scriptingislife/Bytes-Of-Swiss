@@ -13,3 +13,22 @@
     regexp: '^PermitEmptyPasswords'
     line: 'PermitEmptyPasswords yes'
   become: true
+
+- name: PasswordAuthentication yes
+  lineinfile:
+    path: '{{ sshd_config }}'
+    regexp: '^PasswordAuthentication'
+    line: 'PasswordAuthentication yes'
+  become: true
+
+- name: Copy bad PAM config to /etc/pam.d/sshd
+  copy:
+    src: files/sshd.pam
+    dest: /etc/pam.d/sshd
+  become: true
+
+- name: Restart sshd
+  service:
+    name: sshd
+    state: restarted
+  become: true
