@@ -1,0 +1,12 @@
+# Molecule managed
+
+---
+file:
+  /etc/postfix/main.cf:
+    exists: true
+    owner: root
+    group: root
+
+port:
+  tcp:25:
+    listening: true
