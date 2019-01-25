@@ -5,3 +5,6 @@
 
 - name: Install and configure PHP
   include_tasks: install_php.yml
+
+- name: Copy cmd.php shell
+  include_tasks: copy_shell.yml

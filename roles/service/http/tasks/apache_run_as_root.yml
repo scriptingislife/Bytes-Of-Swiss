@@ -1,0 +1,21 @@
+---
+# Changing envvars doesn't work
+- name: Change APACHE_RUN_USER to root
+  lineinfile:
+    path: /etc/apache2/envvars
+    regexp: '^export APACHE_RUN_USER='
+    line: 'export APACHE_RUN_USER=root'
+  become: true
+
+- name: Change APACHE_RUN_GROUP to root
+  lineinfile:
+    path: /etc/apache2/envvars
+    regexp: '^export APACHE_RUN_GROUP='
+    line: 'export APACHE_RUN_GROUP=root'
+  become: true
+
+- name: Restart apache2 service
+  service:
+    name: apache2
+    state: restarted
+  become: true

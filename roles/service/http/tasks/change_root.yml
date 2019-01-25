@@ -1,3 +1,4 @@
+---
 # - name: Change DocumentRoot in 000-default.conf
 #  lineinfile:
 #    path: '/etc/apache2/sites-available/000-default.conf'
