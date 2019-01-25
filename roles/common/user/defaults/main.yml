@@ -1,0 +1,5 @@
+---
+# defaults file for user
+new_username: bob
+new_password: changeme
+new_admin: false

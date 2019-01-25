@@ -13,7 +13,6 @@
   when: ansible_os_family == "RedHat"
   become: true
 
-
 - name: Add Docker’s official GPG key to apt
   apt_key:
     url: https://download.docker.com/linux/ubuntu/gpg
@@ -39,9 +38,33 @@
   when: ansible_os_family == "Debian"
   become: true
 
+- name: Add current user to docker group
+  user:
+    name: '{{ ansible_user }}'
+    groups: ['docker']
+    append: true
+  become: true
+
+- name: Create directory for docker.service override
+  file:
+    path: /etc/systemd/system/docker.service.d/
+    state: directory
+  become: true
+
+- name: Copy docker.service override for remote listening
+  copy:
+    src: files/startup_options.conf
+    dest: /etc/systemd/system/docker.service.d/startup_options.conf
+  become: true
+
+- name: Reload systemd daemon
+  systemd:
+    daemon_reload: true
+  become: true
+
 - name: Enable and start Docker service
   service:
     name: docker
     enabled: true
-    state: started
+    state: restarted
   become: true
