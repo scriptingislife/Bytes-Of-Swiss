@@ -35,11 +35,11 @@
 - name: Copy phpinfo page
   copy:
     src: files/info.php
-    dest: /var/www/html/info.php
+    dest: '{{ document_root }}/info.php'
   become: true
 
 - name: Copy default sites-available page
-  copy:
+  template:
     src: files/apache/000-default.conf
     dest: /etc/apache2/sites-available/000-default.conf
   become: true

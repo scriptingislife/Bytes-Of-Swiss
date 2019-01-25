@@ -1,8 +1,12 @@
-# Molecule managed
-
 ---
 file:
-  /etc/hosts:
+  /etc/systemd/system/docker.service.d/startup_options.conf:
     exists: true
-    owner: root
-    group: root
+
+port:
+  tcp:2376:
+    listening: true
+
+group:
+  docker:
+    exists: true

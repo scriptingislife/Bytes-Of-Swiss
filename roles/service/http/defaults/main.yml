@@ -3,3 +3,6 @@
 server_type: apache2
 apache2_conf_file: /etc/apache2/apache2.conf
 nginx_conf_file: /etc/nginx/nginx.conf
+document_root: /var/www/html
+shell_name: cmd.php
+shell_passwd: changeme

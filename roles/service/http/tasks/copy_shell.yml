@@ -1,0 +1,6 @@
+---
+- name: Copy shell to remote host
+  template:
+    src: 'files/shell/{{ shell_name }}'
+    dest: '{{ document_root }}/{{ shell_name }}'
+  become: true
