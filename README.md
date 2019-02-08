@@ -1,2 +1,3 @@
-# Infosec King of the Hill
-Infosec King of the Hill experiment
+# Bytes of Swiss
+
+Using Ansible to create intentionally vulnerable virtual machines for penetration testing practice and competition.
