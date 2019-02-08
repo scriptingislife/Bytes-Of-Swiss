@@ -1,14 +1,32 @@
 ---
 # allow anonymous login
-- name: Change config file
+- name: Allow anonymous login
   lineinfile:
     path: "{{ config_file }}"
     regexp: "^anonymous_enable="
     line: "anonymous_enable=YES"
+  notify: 'restart ftp'
   become: true
 
-- name: Restart ftp service
-  service:
-    name: vsftpd
-    state: restarted
+- name: Change anonymous directory location
+  lineinfile:
+    path: "{{ config_file }}"
+    line: "anon_root={{ anon_root }}"
+  notify: 'restart ftp'
+  become: true
+
+- name: Allow anonymous upload
+  lineinfile:
+    path: "{{ config_file }}"
+    regexp: "^anon_upload_enable="
+    line: "anon_upload_enable=YES"
+  notify: 'restart ftp'
+  become: true
+
+- name: Allow anonymous mkdir
+  lineinfile:
+    path: "{{ config_file }}"
+    regexp: "^#anon_mkdir_write_enable"
+    line: "anon_mkdir_write_enable=YES"
+  notify: 'restart ftp'
   become: true

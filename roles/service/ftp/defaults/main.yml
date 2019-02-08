@@ -1,3 +1,6 @@
 ---
 # defaults file for ftp
 config_file: /etc/vsftpd.conf
+anon_root: /tmp
+banner: 'Welcome to blah FTP service'
+write_enable: 'NO'

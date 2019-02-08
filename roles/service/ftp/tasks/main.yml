@@ -5,3 +5,6 @@
 
 - name: Enable anonymous login
   include_tasks: anonymous_login.yml
+
+- name: Enable user upload
+  include_tasks: write_enable.yml

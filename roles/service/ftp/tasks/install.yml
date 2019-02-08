@@ -14,9 +14,16 @@
   when: ansible_os_family == "RedHat"
   become: true
 
+- name: Modify banner
+  lineinfile:
+    path: "{{ config_file }}"
+    regexp: "^#ftpd_banner="
+    line: "ftpd_banner={{ banner }}"
+  become: true
+
 - name: Start ftp server
   service:
     name: vsftpd
     enabled: true
-    state: started
+    state: restarted
   become: true

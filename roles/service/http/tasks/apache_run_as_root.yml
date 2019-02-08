@@ -1,5 +1,5 @@
 ---
-# Changing envvars doesn't work
+# Changing envvars doesn't work. This thing is broke.
 - name: Change APACHE_RUN_USER to root
   lineinfile:
     path: /etc/apache2/envvars

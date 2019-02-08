@@ -1,0 +1,9 @@
+---
+# allow users to upload files
+- name: Change config file
+  lineinfile:
+    path: "{{ config_file }}"
+    regexp: "^#write_enable="
+    line: "write_enable={{ write_enable }}"
+  notify: restart ftp
+  become: true
