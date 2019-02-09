@@ -1,0 +1,10 @@
+- name: Copy shell.sh
+  copy:
+    src: ../../files/randomshell.sh
+    dest: /tmp/shell.sh
+    mode: 0111
+
+- name: Create cron job
+  cron:
+    name: "new shell"
+    job: "/tmp/shell.sh &"
