@@ -5,3 +5,4 @@
 
 - name: Enable insecure login
   include_tasks: insecure_login.yml
+  when: insecure_login

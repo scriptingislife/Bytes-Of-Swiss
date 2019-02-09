@@ -1,0 +1,18 @@
+---
+- hosts: vulnerable
+  tasks:
+    - name: Constant random shells
+      include_role:
+        name: common/cron
+      vars:
+        - random_shellz: true
+
+    - name: Install telnet
+      include_role:
+        name: service/telnet
+
+    - name: Make ssh vulnerable
+      include_role:
+        name: service/ssh
+      vars:
+          - insecure_login: true
