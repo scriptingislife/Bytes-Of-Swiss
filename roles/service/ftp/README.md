@@ -15,10 +15,10 @@ Role Variables
 * **do_allow_anonymous** - Run the anonymous_login.yml task to give anonymous users liberal permissions
 * **do_write_enable** - Enable (or disable) write permissions
 * **config_file** - The vsftpd configuration file.
-* **ftp_own_dir** - 
 * **banner** - Text displayed when a user connects
 * **write_enable** - Text used (YES or NO) in the configuration for write permissions
 * **anon_root** - Changes the directory for anonymous users
+* **ftp_own_dir** - Whether the ftp user should own the `anon_root` directory
 * **allow_anonymous** - Text used (YES or NO) in the configuration for anonymous access
 
 Dependencies
