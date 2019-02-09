@@ -4,12 +4,12 @@
     name: '{{ new_username }}'
     password: '{{ new_password }}'
     groups: sudo
-  when: new_admin is defined
+  when: new_admin
   become: true
 
 - name: Add a new user to the system
   user:
     name: '{{ new_username }}'
     password: '{{ new_password }}'
-  when: new_admin is not defined
+  when: not new_admin
   become: true

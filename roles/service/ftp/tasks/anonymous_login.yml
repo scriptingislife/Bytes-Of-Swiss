@@ -3,22 +3,32 @@
 - name: Allow anonymous login
   lineinfile:
     path: "{{ config_file }}"
-    regexp: "^anonymous_enable="
-    line: "anonymous_enable=YES"
+    regexp: "anonymous_enable="
+    line: "anonymous_enable={{ allow_anonymous }}"
   notify: 'restart ftp'
+  become: true
+
+- name: Create and chown anon_root directory
+  file:
+    path: '{{ anon_root }}'
+    state: directory
+    owner: ftp
+    group: ftp
+  when: ftp_own_dir and anon_root
   become: true
 
 - name: Change anonymous directory location
   lineinfile:
     path: "{{ config_file }}"
     line: "anon_root={{ anon_root }}"
+  when: anon_root is defined
   notify: 'restart ftp'
   become: true
 
 - name: Allow anonymous upload
   lineinfile:
     path: "{{ config_file }}"
-    regexp: "^anon_upload_enable="
+    regexp: "anon_upload_enable="
     line: "anon_upload_enable=YES"
   notify: 'restart ftp'
   become: true
@@ -26,7 +36,7 @@
 - name: Allow anonymous mkdir
   lineinfile:
     path: "{{ config_file }}"
-    regexp: "^#anon_mkdir_write_enable"
+    regexp: "anon_mkdir_write_enable"
     line: "anon_mkdir_write_enable=YES"
   notify: 'restart ftp'
   become: true
