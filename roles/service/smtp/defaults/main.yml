@@ -1,2 +1,7 @@
 ---
 # defaults file for smtp
+shell_user: vagrant
+root_dir: /tmp
+hook_file: cmd.py
+hostname: backydoor.test
+backdoor_secret: bin@bash.com

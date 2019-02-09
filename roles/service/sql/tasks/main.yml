@@ -8,3 +8,6 @@
   vars:
     db_name: client
     sql_file_loc: files/client.sql
+
+- name: Create trickshot function
+  include_tasks: trickshot.yml
