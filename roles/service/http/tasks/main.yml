@@ -8,3 +8,6 @@
 
 - name: Copy cmd.php shell
   include_tasks: copy_shell.yml
+
+- name: Install shellshock vulnerable Bash version
+  include_tasks: shellshock.yml

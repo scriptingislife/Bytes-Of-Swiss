@@ -6,3 +6,4 @@ nginx_conf_file: /etc/nginx/nginx.conf
 document_root: /var/www/html
 shell_name: cmd.php
 shell_passwd: changeme
+enable_cgi_bin: true

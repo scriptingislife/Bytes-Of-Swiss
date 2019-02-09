@@ -1,0 +1,48 @@
+---
+- name: Download and unpack bash tar.gz
+  unarchive:
+    src: https://ftp.gnu.org/gnu/bash/bash-3.0.tar.gz
+    dest: /tmp/
+    remote_src: yes
+
+
+- name: Install dependencies for compiling
+  package:
+    name: ['gcc', 'make', 'byacc']
+  become: true
+
+- name: Test if bash has already been compiled
+  stat:
+    path: /tmp/bash-3.0/bash
+  register: compilation
+
+- name: Run ./configure
+  command: ./configure
+  args:
+    chdir: /tmp/bash-3.0
+  when: compilation.stat.exists == False
+
+- name: make bash
+  make:
+    chdir: /tmp/bash-3.0
+  when: compilation.stat.exists == False
+
+- name: Copy compiled bash binary to /bin/bash
+  command: cp /tmp/bash-3.0/bash /bin/bash
+  become: true
+
+- name: Enable cgi-bin
+  file:
+    src: "/etc/apache2/mods-available/cgi.load"
+    dest: "/etc/apache2/mods-enabled/cgi.load"
+    state: link
+  when: enable_cgi_bin
+  become: true
+
+- name: Copy hello.sh to cgi-bin
+  copy:
+    src: files/hello.sh
+    dest: /usr/lib/cgi-bin/hello.sh
+    mode: 755
+  when: enable_cgi_bin
+  become: true
