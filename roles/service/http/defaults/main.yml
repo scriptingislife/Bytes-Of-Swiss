@@ -1,5 +1,9 @@
 ---
 # defaults file for http
+testing: false
+do_webshell: false
+do_shellshock: false
+
 server_type: apache2
 apache2_conf_file: /etc/apache2/apache2.conf
 nginx_conf_file: /etc/nginx/nginx.conf

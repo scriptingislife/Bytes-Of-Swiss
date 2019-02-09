@@ -11,4 +11,5 @@
     share_browsable: 'yes'
     share_writeable: 'yes'
     share_guestok: 'yes'
-    share_readonly: 'no' 
+    share_readonly: 'no'
+  when: do_anon_share or testing

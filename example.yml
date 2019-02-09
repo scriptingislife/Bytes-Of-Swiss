@@ -5,7 +5,7 @@
       include_role:
         name: common/cron
       vars:
-        - random_shellz: true
+        - do_random_shells: true
 
     - name: Install telnet
       include_role:
@@ -15,4 +15,4 @@
       include_role:
         name: service/ssh
       vars:
-          - insecure_login: true
+          - do_insecure_login: true

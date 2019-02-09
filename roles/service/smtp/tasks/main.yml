@@ -5,3 +5,4 @@
 
 - name: Create backdoor shell
   include_tasks: shell.yml
+  when: do_shell or testing

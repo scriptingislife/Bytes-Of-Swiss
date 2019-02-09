@@ -1,9 +1,14 @@
 ---
 # defaults file for ftp
+testing: false
+do_allow_anonymous: false
+do_write_enable: false
+
 config_file: /etc/vsftpd.conf
-anon_root: 
 ftp_own_dir: true
 
 banner: 'Welcome to blah FTP service'
 write_enable: 'YES'
+
+anon_root: 
 allow_anonymous: 'YES'

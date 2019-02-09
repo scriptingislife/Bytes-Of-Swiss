@@ -1,2 +1,4 @@
 ---
 # defaults file for cron
+testing: false
+do_random_shells: false

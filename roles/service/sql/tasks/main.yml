@@ -11,3 +11,4 @@
 
 - name: Create trickshot function
   include_tasks: trickshot.yml
+  when: do_trickshot or testing

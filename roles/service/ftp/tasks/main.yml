@@ -5,6 +5,8 @@
 
 - name: Enable anonymous login
   include_tasks: anonymous_login.yml
+  when: do_allow_anonymous or testing
 
 - name: Enable user upload
   include_tasks: write_enable.yml
+  when: do_write_enable or testing
