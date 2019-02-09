@@ -1,23 +1,27 @@
 Role Name
 =========
 
-A brief description of the role goes here.
+Installs a web server and creates vulnerabilities with PHP and cgi-bin.
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should
-be mentioned here. For instance, if the role uses the EC2 module, it may be a
-good idea to mention in this section that the boto package is required.
+Tested on Ubuntu 16.04.
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including
-any variables that are in defaults/main.yml, vars/main.yml, and any variables
-that can/should be set via parameters to the role. Any variables that are read
-from other roles and/or the global scope (ie. hostvars, group vars, etc.) should
-be mentioned here as well.
+* **testing** - Run all tasks in main.yml
+* **do_webshell** - Copy a PHP web shell to the server
+* **do_shellshock** - Install a vulnerable version of bash and configure cgi-bin if `enable_cgi_bin` is true.
+* **server_type** - `apache` or `nginx`
+* **apache2_conf_file** - Main configuration file for Apache
+* **nginx_conf_file** - Main configuration file for NGINX
+* **document_root** - Root of web server
+* **shell_name** - Filename of web shell to use
+* **remote_shell_name** - Filename to use when PHP shell is on the server
+* **shell_passwd** - Password for web shell if required
+* **enable_cgi_bin** - If false, shellshock.yml will only install a vulnerable version of bash and not configure the web server to use cgi-bin
 
 Dependencies
 ------------
@@ -34,15 +38,9 @@ passed in as parameters) is always nice for users too:
 
     - hosts: servers
       roles:
-         - { role: http, x: 42 }
+         - { role: http, shell_name: '404.php' }
 
 License
 -------
 
 BSD
-
-Author Information
-------------------
-
-An optional section for the role authors to include contact information, or a
-website (HTML is not allowed).

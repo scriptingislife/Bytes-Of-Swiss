@@ -1,3 +1,4 @@
 ---
 # defaults file for tomcat
 tomcat_dir: /opt/tomcat
+tomcat_passwd: s3cret

@@ -57,7 +57,7 @@
   become: true
 
 - name: Copy service file
-  copy:
+  template:
     src: files/tomcat.service
     dest: /etc/systemd/system/tomcat.service
   become: true

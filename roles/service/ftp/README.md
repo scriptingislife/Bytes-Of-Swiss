@@ -1,30 +1,30 @@
 Role Name
 =========
 
-A brief description of the role goes here.
+Installs vsftpd and can enable anonymous access.
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should
-be mentioned here. For instance, if the role uses the EC2 module, it may be a
-good idea to mention in this section that the boto package is required.
+Tested on Ubuntu 16.04.
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including
-any variables that are in defaults/main.yml, vars/main.yml, and any variables
-that can/should be set via parameters to the role. Any variables that are read
-from other roles and/or the global scope (ie. hostvars, group vars, etc.) should
-be mentioned here as well.
+* **testing** - Runs all tasks in main.yml
+* **do_allow_anonymous** - Run the anonymous_login.yml task to give anonymous users liberal permissions
+* **do_write_enable** - Enable (or disable) write permissions
+* **config_file** - The vsftpd configuration file.
+* **ftp_own_dir** - 
+* **banner** - Text displayed when a user connects
+* **write_enable** - Text used (YES or NO) in the configuration for write permissions
+* **anon_root** - Changes the directory for anonymous users
+* **allow_anonymous** - Text used (YES or NO) in the configuration for anonymous access
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in
-regards to parameters that may need to be set for other roles, or variables that
-are used from other roles.
+None.
 
 Example Playbook
 ----------------
@@ -34,15 +34,9 @@ passed in as parameters) is always nice for users too:
 
     - hosts: servers
       roles:
-         - { role: ftp, x: 42 }
+         - { role: ftp, do_allo_anonymous: true }
 
 License
 -------
 
 BSD
-
-Author Information
-------------------
-
-An optional section for the role authors to include contact information, or a
-website (HTML is not allowed).
