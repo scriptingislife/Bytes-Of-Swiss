@@ -1,6 +1,6 @@
 ---
 # defaults file for http
-testing: false
+testing: true
 do_webshell: false
 do_shellshock: false
 
@@ -12,3 +12,4 @@ shell_name: cmd.php
 remote_shell_name: cmd.php
 shell_passwd: changeme
 enable_cgi_bin: true
+cgi_script: uptime.sh
