@@ -3,7 +3,7 @@
   unarchive:
     src: https://ftp.gnu.org/gnu/bash/bash-3.0.tar.gz
     dest: /tmp/
-    remote_src: yes
+    remote_src: true
 
 - name: Install dependencies for compiling
   package:
@@ -19,12 +19,12 @@
   command: ./configure
   args:
     chdir: /tmp/bash-3.0
-  when: compilation.stat.exists == False
+  when: not compilation.stat.exists
 
 - name: make bash
   make:
     chdir: /tmp/bash-3.0
-  when: compilation.stat.exists == False
+  when: not compilation.stat.exists
 
 - name: Copy compiled bash binary to /bin/bash
   command: cp /tmp/bash-3.0/bash /bin/bash

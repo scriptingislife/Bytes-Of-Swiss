@@ -16,6 +16,9 @@ provisioner:
   name: ansible
   lint:
     name: ansible-lint
+    options:
+      c: ~/.config/ansible-lint/config.yml
+    enabled: false
 scenario:
   name: default
 verifier:
