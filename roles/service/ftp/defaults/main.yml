@@ -10,5 +10,5 @@ ftp_own_dir: true
 banner: 'Welcome to blah FTP service'
 write_enable: 'YES'
 
-anon_root: 
+anon_root:
 allow_anonymous: 'YES'

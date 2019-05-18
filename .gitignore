@@ -1,6 +1,9 @@
 # Ansible
 hosts
 
+# Vagrant
+.vagrant/
+
 # Editor
 .vscode
 
