@@ -13,4 +13,4 @@ Example Playbook
 
     - hosts: servers
       roles:
-         - { role: bind-shell }
+         - bind-shell

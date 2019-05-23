@@ -1,0 +1,28 @@
+---
+- name: Ensure openssh-server is installed
+  package:
+    name: openssh-server
+    state: present
+
+- name: Modify sshd_config
+  block:
+    - name: PermitRootLogin yes
+      lineinfile:
+        path: '{{ sshd_config }}'
+        regexp: '^PermitRootLogin'
+        line: 'PermitRootLogin yes'
+
+    - name: PermitEmptyPasswords yes
+      lineinfile:
+        path: '{{ sshd_config }}'
+        regexp: '^PermitEmptyPasswords'
+        line: 'PermitEmptyPasswords yes'
+
+    - name: PasswordAuthentication yes
+      lineinfile:
+        path: '{{ sshd_config }}'
+        regexp: '^PasswordAuthentication'
+        line: 'PasswordAuthentication yes'
+  become: true
+  notify:
+    - restart ssh
