@@ -2,14 +2,16 @@
 dependency:
   name: galaxy
 driver:
-  name: docker
+  name: vagrant
+  provider:
+    name: virtualbox
 lint:
   name: yamllint
 platforms:
-  - name: ubuntu
-    image: ubuntu:16.04
-  - name: centos
-    image: centos:7
+  - name: ubuntu1604
+    box: ubuntu/xenial64
+  - name: centos7
+    box: centos/7
 provisioner:
   name: ansible
   lint:
