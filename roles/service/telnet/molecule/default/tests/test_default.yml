@@ -1,15 +1,6 @@
+# Molecule managed
+
 ---
 file:
-  /etc/inetd.conf:
+  /etc/hosts:
     exists: true
-    owner: root
-    group: root
-
-service:
-  inetd:
-    enabled: true
-    running: true
-
-port:
-  tcp:23:
-    listening: true
