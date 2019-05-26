@@ -1,7 +1,7 @@
 ---
 galaxy_info:
-  author: your name
-  description: your description
+  author: Nathaniel Beckstead
+  description: Installs an Apache Tomcat server.
   company: your company (optional)
 
   # If the issue tracker for your role is not on github, uncomment the

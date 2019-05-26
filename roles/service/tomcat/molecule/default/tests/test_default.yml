@@ -6,7 +6,3 @@ file:
     exists: true
     owner: root
     group: root
-
-port:
-  tcp:8080:
-    listening: true
