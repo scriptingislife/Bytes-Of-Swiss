@@ -6,10 +6,25 @@
   become: true
   when: ansible_os_family == "RedHat" and server_type == "nginx"
 
-- name: Install web server
-  package:
-    name: "{{ server_package[server_type][ansible_os_family] }}{% if server_version != 'latest' %}-{{ server_version }}{% endif %}"
+- name: Install web server with apt
+  apt:
+    name: "{{ server_package[server_type][ansible_os_family] }}"
+    update_cache: true
   become: true
+  when: ansible_os_family == "Debian"
+
+- name: Install web server with yum
+  yum:
+    name: "{{ server_package[server_type][ansible_os_family] }}"
+    update_cache: true
+  become: true
+  when: ansible_os_family == "RedHat"
+
+# - name: Install web server
+#   package:
+#     name: "{{ server_package[server_type][ansible_os_family] }}{% if server_version != 'latest' %}-{{ server_version }}{% endif %}"
+#     state: latest
+#   become: true
 
 - name: Start web server
   service:

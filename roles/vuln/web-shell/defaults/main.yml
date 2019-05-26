@@ -1,0 +1,6 @@
+---
+# defaults file for web-shell
+document_root: /var/www/html
+shell_name: cmd.php
+remote_shell_name: cmd.php
+shell_passwd: changeme
