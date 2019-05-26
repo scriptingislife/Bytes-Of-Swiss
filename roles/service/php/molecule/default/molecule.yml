@@ -18,8 +18,6 @@ platforms:
       - "vm.network 'forwarded_port', guest: 80, host: 5002"
 provisioner:
   name: ansible
-  env:
-    ANSIBLE_ROLES_PATH: '../../../../service/'
   lint:
     name: ansible-lint
     options:
