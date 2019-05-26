@@ -1,0 +1,7 @@
+---
+# tasks file for web-shell
+- name: "Copy {{ shell_name }} to {{ document_root }}/{{ remote_shell_name }}"
+  template:
+    src: 'files/{{ shell_name }}'
+    dest: '{{ document_root }}/{{ remote_shell_name }}'
+  become: true

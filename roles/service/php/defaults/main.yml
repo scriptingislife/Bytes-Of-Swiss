@@ -1,0 +1,4 @@
+---
+# defaults file for php
+server_type: apache2
+php_version: 7.3

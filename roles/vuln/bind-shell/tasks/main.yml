@@ -1,0 +1,4 @@
+---
+# tasks file for bind-shell
+- name: Install netcat package
+  include_tasks: install.yml

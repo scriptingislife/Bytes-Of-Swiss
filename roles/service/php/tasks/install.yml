@@ -1,0 +1,65 @@
+---
+- name: Setup PHP for Debian systems
+  block:
+    - name: Install PHP with apt
+      apt:
+        name: php
+        update_cache: true
+
+    - name: Install additional PHP packages with apt
+      apt:
+        name: "{{ packages }}"
+        state: present
+      vars:
+        packages:
+          - php-bcmath
+          - php-bz2
+          - php-intl
+          - php-gd
+          - php-mbstring
+          - php-mcrypt
+          - php-mysql
+          - php-zip
+          - libapache2-mod-php
+
+  become: true
+  when: ansible_os_family == "Debian"
+
+- name: Setup PHP for RedHat systems
+  block:
+#    - name: Install EPEL repo
+#      yum_repository:
+#        name: epel
+#        description: EPEL YUM repo
+#        baseurl: https://download.fedoraproject.org/pub/epel/$releasever/$basearch/
+#
+#    - name: Install Remi repo
+#      yum_repository:
+#        name: remi
+#        description: Remi YUM repo
+#        baseurl: http://rpms.remirepo.net/enterprise/remi-release-7.rpm
+
+    - name: Install PHP with yum
+      yum:
+        name: php
+        update_cache: true
+
+    - name: Install additional PHP packages with yum
+      yum:
+        name: php-fpm
+        state: present
+
+    - name: Start php-fpm service
+      service:
+        name: php-fpm
+        enabled: true
+        state: started
+
+# TODO: Don't hardcode service name
+    - name: Restart httpd service
+      service:
+        name: httpd
+        state: restarted
+
+  become: true
+  when: ansible_os_family == "RedHat"
