@@ -1,0 +1,10 @@
+---
+server_type: apache
+server_version: 'latest'
+server_package:
+  apache:
+    Debian: apache2
+    RedHat: httpd
+  nginx:
+    Debian: nginx
+    RedHat: nginx

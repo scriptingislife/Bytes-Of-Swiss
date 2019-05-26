@@ -1,0 +1,19 @@
+---
+- name: Install epel-release if needed
+  yum:
+    name: epel-release
+    update_cache: true
+  become: true
+  when: ansible_os_family == "RedHat" and server_type == "nginx"
+
+- name: Install web server
+  package:
+    name: "{{ server_package[server_type][ansible_os_family] }}{% if server_version != 'latest' %}-{{ server_version }}{% endif %}"
+  become: true
+
+- name: Start web server
+  service:
+    name: "{{ server_package[server_type][ansible_os_family] }}"
+    enabled: true
+    state: started
+  become: true
