@@ -1,8 +1,0 @@
----
-# defaults file for sql
-testing: false
-do_trickshot: false
-
-server_type: mysql
-#server_type: mariadb
-root_passwd: changeme

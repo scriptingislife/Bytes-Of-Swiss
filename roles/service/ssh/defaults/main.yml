@@ -1,6 +1,0 @@
----
-# defaults file for ssh
-testing: false
-do_insecure_login: false
-
-sshd_config: /etc/ssh/sshd_config

@@ -1,0 +1,8 @@
+---
+# tasks file for database
+- name: Install the database server
+  include_tasks: install.yml
+
+- name: Configure MySQL server
+  include_tasks: setup-mysql.yml
+  when: server_type == "mysql"

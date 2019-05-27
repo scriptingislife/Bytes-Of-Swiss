@@ -1,3 +1,0 @@
----
-- name: Install the service
-  include_tasks: install.yml

@@ -1,0 +1,7 @@
+---
+# defaults file for database
+server_type: mysql
+server_version: latest
+mysql_rpm_url: https://dev.mysql.com/get/mysql80-community-release-el7-3.noarch.rpm
+db_root_password: changeme
+db_listen_ip: 127.0.0.1

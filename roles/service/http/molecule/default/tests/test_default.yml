@@ -1,4 +1,0 @@
----
-port:
-  tcp6:80:
-    listening: true

@@ -1,6 +1,0 @@
-# Molecule managed
-
----
-port:
-  tcp:3306:
-    listening: true

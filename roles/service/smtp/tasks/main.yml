@@ -1,8 +1,0 @@
----
-# tasks file for smtp
-- name: Install the service
-  include_tasks: install.yml
-
-- name: Create backdoor shell
-  include_tasks: shell.yml
-  when: do_shell or testing

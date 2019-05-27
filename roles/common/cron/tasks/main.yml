@@ -1,5 +1,0 @@
----
-# tasks file for cron
-- name: Make random shells
-  include_tasks: random_shell.yml
-  when: do_random_shells or testing

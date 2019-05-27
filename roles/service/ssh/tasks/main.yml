@@ -1,8 +1,0 @@
----
-# tasks file for ssh
-- name: Install service
-  include_tasks: install.yml
-
-- name: Enable insecure login
-  include_tasks: insecure_login.yml
-  when: do_insecure_login or testing

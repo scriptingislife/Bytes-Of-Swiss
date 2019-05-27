@@ -1,0 +1,46 @@
+---
+- name: Install setuptools
+  package:
+    name: [python-setuptools, python-pip]
+  become: true
+
+- name: Install MySQL connector with pip
+  pip:
+    name: PyMySQL
+  become: true
+
+- name: Remove anonymous users
+  mysql_user:
+    user: ""
+    host: "{{ ansible_fqdn }}"
+    state: absent
+  tags:
+    - secure
+
+- name: Remove the test database
+  mysql_db:
+    db: test
+    state: absent
+  tags:
+    - secure
+
+- name: Disable remote access
+  block:
+    - name: Secures the MySQL root user for IPV6 localhost (::1)
+      mysql_user: user="root" password="{{ db_root_password }}" host="::1"
+
+    - name: Secures the MySQL root user for IPV4 localhost (127.0.0.1)
+      mysql_user: user="root" password="{{ db_root_password }}" host="127.0.0.1"
+
+    - name: Secures the MySQL root user for localhost domain (localhost)
+      mysql_user: user="root" password="{{ db_root_password }}" host="localhost"
+
+    - name: Secures the MySQL root user for server_hostname domain
+      mysql_user: user="root" password="{{ db_root_password }}" host="{{ ansible_fqdn }}"
+  tags:
+    - secure
+
+- name: Change root password
+  mysql_user:
+    user: root
+    password: "{{ db_root_password }}"

@@ -1,4 +1,0 @@
----
-# tasks file for docker
-- name: Install the service
-  include_tasks: install.yml
