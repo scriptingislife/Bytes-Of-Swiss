@@ -31,4 +31,4 @@ Example Playbook
 Author Information
 ------------------
 
-Nathaniel Beckstead @github
+Nathaniel Beckstead @becksteadn
