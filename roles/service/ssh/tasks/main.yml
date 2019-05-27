@@ -4,3 +4,10 @@
   package:
     name: openssh-server
   become: true
+
+- name: Start SSH server
+  service:
+    name: sshd
+    enabled: true
+    state: started
+  become: true
