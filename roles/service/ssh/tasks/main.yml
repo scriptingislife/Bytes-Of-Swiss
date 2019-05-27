@@ -1,0 +1,6 @@
+---
+# tasks file for ssh
+- name: "Install {{ server_type }}"
+  package:
+    name: openssh-server
+  become: true
