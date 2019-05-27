@@ -1,0 +1,13 @@
+---
+- name: "Install {{ server_type }}"
+  package:
+    name: "{{ server_type }}"
+    state: present
+  become: true
+
+- name: Start FTP server
+  service:
+    name: "{{ server_type }}"
+    enabled: true
+    state: started
+  become: true

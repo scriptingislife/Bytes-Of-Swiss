@@ -1,0 +1,8 @@
+---
+# defaults file for ftp
+server_type: vsftpd
+ftp_config_path:
+  vsftpd:
+    debian: /etc/vsftpd.conf
+    redhat: /etc/vsftpd/vsftpd.conf
+ftp_banner: "Welcome to my secure FTP server"

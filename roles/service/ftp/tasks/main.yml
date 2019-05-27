@@ -1,0 +1,12 @@
+---
+# tasks file for ftp
+- name: Install FTP server
+  include_tasks: install.yml
+
+- name: Modify FTP banner
+  lineinfile:
+    path: "{{ ftp_config_path[server_type][ansible_os_family | lower] }}"
+    regexp: "^#ftpd_banner="
+    line: "ftpd_banner={{ ftp_banner }}"
+  become: true
+  notify: restart ftp

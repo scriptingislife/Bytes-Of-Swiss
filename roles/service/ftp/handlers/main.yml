@@ -1,0 +1,7 @@
+---
+# handlers file for ftp
+- name: restart ftp
+  service:
+    name: "{{ server_type }}"
+    state: restarted
+  become: true
