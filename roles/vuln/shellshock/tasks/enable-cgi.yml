@@ -1,0 +1,30 @@
+---
+- name: Enable cgi-bin module
+  file:
+    src: "/etc/apache2/mods-available/cgi.load"
+    dest: "/etc/apache2/mods-enabled/cgi.load"
+    state: link
+  when: enable_cgi_bin
+  become: true
+
+- name: Reload apache2
+  service:
+    name: apache2
+    state: reloaded
+  become: true
+
+- name: Copy CGI script to cgi-bin
+  copy:
+    src: 'files/{{ cgi_script }}'
+    dest: '/usr/lib/cgi-bin/{{ cgi_script }}'
+    mode: 0755
+  when: enable_cgi_bin
+  become: true
+
+- name: Copy index page for uptime cgi-script
+  copy:
+    src: 'files/html/uptime.html'
+    dest: '/var/www/html/index.html'
+    mode: 0644
+  when: enable_cgi_bin and cgi_script == 'uptime.sh'
+become: true

@@ -11,7 +11,10 @@ None.
 Role Variables
 --------------
 
-None.
+```
+server_type
+  Kind of SSH server to install. (Default - openssh-server)
+```
 
 Dependencies
 ------------
@@ -23,9 +26,9 @@ Example Playbook
 
     - hosts: servers
       roles:
-         - { role: ssh, my_var: 42 }
+         - ssh
 
 Author Information
 ------------------
 
-Me! @github
+Nathaniel Beckstead @becksteadn

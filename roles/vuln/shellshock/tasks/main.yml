@@ -1,0 +1,4 @@
+---
+# tasks file for shellshock
+- name: Install vulnerable version of Bash
+  include_tasks: install.yml

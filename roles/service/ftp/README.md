@@ -28,9 +28,9 @@ Example Playbook
 
     - hosts: servers
       roles:
-         - { role: ftp, my_var: 42 }
+         - { role: ftp, ftp_banner: 'Welcome to my FTP server'! }
 
 Author Information
 ------------------
 
-Nathaniel Beckstead @github
+Nathaniel Beckstead @becksteadn

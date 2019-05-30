@@ -1,7 +1,7 @@
 docker
 =========
 
-Install docker-ce and docker-compose
+Install docker-ce and docker-compose.
 
 Requirements
 ------------
@@ -23,9 +23,9 @@ Example Playbook
 
     - hosts: servers
       roles:
-         - { role: docker, my_var: 42 }
+         - docker
 
 Author Information
 ------------------
 
-Me! @github
+Nathaniel Beckstead @becksteadn

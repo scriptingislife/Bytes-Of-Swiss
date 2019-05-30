@@ -11,10 +11,7 @@ None.
 Role Variables
 --------------
 
-```
-my_var
-  42 - Creates 42 gold coins.
-```
+None.
 
 Dependencies
 ------------
@@ -26,9 +23,9 @@ Example Playbook
 
     - hosts: servers
       roles:
-         - { role: redis, my_var: 42 }
+         - redis
 
 Author Information
 ------------------
 
-Nathaniel Beckstead @github
+Nathaniel Beckstead @becksteadn

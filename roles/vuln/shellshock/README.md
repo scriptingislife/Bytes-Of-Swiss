@@ -1,7 +1,7 @@
-telnet
+shellshock
 =========
 
-Installs a telnet server.
+Install an older version of Bash that is vulnerable to shellshock.
 
 Requirements
 ------------
@@ -11,19 +11,22 @@ None.
 Role Variables
 --------------
 
-None.
+```
+my_var
+  42 - Creates 42 gold coins.
+```
 
 Dependencies
 ------------
 
-None.
+* web
 
 Example Playbook
 ----------------
 
     - hosts: servers
       roles:
-         - telnet
+         - shellshock
 
 Author Information
 ------------------
