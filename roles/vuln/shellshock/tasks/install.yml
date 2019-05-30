@@ -1,7 +1,7 @@
 ---
 - name: Download and unpack bash tar.gz
   unarchive:
-    src: https://ftp.gnu.org/gnu/bash/bash-3.0.tar.gz
+    src: "https://ftp.gnu.org/gnu/bash/bash-{{ bash_version }}.tar.gz"
     dest: /tmp/
     remote_src: true
 
@@ -12,21 +12,24 @@
 
 - name: Test if bash has already been compiled
   stat:
-    path: /tmp/bash-3.0/bash
+    path: /tmp/bash-{{ bash_version }}/bash
   register: compilation
 
 - name: Run ./configure
   command: ./configure
   args:
-    chdir: /tmp/bash-3.0
+    chdir: /tmp/bash-{{ bash_version }}
   when: not compilation.stat.exists
 
 - name: make bash
   make:
-    chdir: /tmp/bash-3.0
+    chdir: /tmp/bash-{{ bash_version }}
   when: not compilation.stat.exists
 
-# TODO: Make idempotent
+# 
 - name: Copy compiled bash binary to /bin/bash
-  command: cp /tmp/bash-3.0/bash /bin/bash
+  copy:
+    src: "/tmp/bash-{{ bash_version }}"
+    dest: /bin/bash
+    remote_src: true
   become: true
