@@ -1,28 +1,57 @@
 ---
-- name: Enable cgi-bin module
-  file:
-    src: "/etc/apache2/mods-available/cgi.load"
-    dest: "/etc/apache2/mods-enabled/cgi.load"
-    state: link
-  become: true
+- name: "Enable cgi-bin for Debian"
+  block: 
+    - name: Enable cgi-bin module
+      file:
+        src: "/etc/apache2/mods-available/cgi.load"
+        dest: "/etc/apache2/mods-enabled/cgi.load"
+        state: link
+      register: enable_cgi_apache2
 
-- name: Reload apache2
-  service:
-    name: apache2
-    state: reloaded
-  become: true
+    - name: Reload apache2
+      service:
+        name: apache2
+        state: reloaded
+      when: enable_cgi_apache2.changed
 
-- name: Copy CGI script to cgi-bin
-  copy:
-    src: 'files/{{ cgi_script }}'
-    dest: '/usr/lib/cgi-bin/{{ cgi_script }}'
-    mode: 0755
+    - name: Copy CGI script to cgi-bin
+      copy:
+        src: '{{ cgi_script }}'
+        dest: '/usr/lib/cgi-bin/{{ cgi_script }}'
+        mode: 0755
+      become: true
+
   become: true
+  when: ansible_os_family == "Debian"
+
+- name: "Enable cgi-bin for RedHat"
+  block:
+    - name: Enable cgi-bin module
+      lineinfile:
+        path: "/etc/httpd/conf/httpd.conf"
+        line: "LoadModule cgi_module modules/mod_cgi.so"
+      register: enable_cgi_httpd
+  
+    - name: Reload httpd
+      service:
+        name: httpd
+        state: reloaded
+      when: enable_cgi_httpd.changed
+
+    - name: Copy CGI script to cgi-bin
+      copy:
+        src: '{{ cgi_script }}'
+        dest: '/var/www/cgi-bin/{{ cgi_script }}'
+        mode: 0755
+      become: true
+
+  become: true
+  when: ansible_os_family == "RedHat"
 
 - name: Copy index page for uptime cgi-script
   copy:
-    src: 'files/html/uptime.html'
+    src: 'html/uptime.html'
     dest: '/var/www/html/index.html'
     mode: 0644
-  when: cgi_script == 'uptime.sh'
   become: true
+  when: cgi_script == 'uptime.sh'

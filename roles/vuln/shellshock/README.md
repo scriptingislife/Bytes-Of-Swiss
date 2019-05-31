@@ -1,7 +1,7 @@
 shellshock
 =========
 
-Install an older version of Bash that is vulnerable to shellshock.
+Install an older version of Bash that is vulnerable to shellshock. Currently supports apache2 on Debian systems and httpd on RHEL systems.
 
 Requirements
 ------------

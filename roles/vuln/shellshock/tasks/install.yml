@@ -26,10 +26,9 @@
     chdir: /tmp/bash-{{ bash_version }}
   when: not compilation.stat.exists
 
-# 
 - name: Copy compiled bash binary to /bin/bash
   copy:
-    src: "/tmp/bash-{{ bash_version }}"
+    src: "/tmp/bash-{{ bash_version }}/bash"
     dest: /bin/bash
     remote_src: true
   become: true
