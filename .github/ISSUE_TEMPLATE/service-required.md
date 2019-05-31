@@ -1,7 +1,7 @@
 ---
 name: Service Required
 about: Request a role that installs an application required by a vulnerability.
-title: "[SERV]  \U0001F9F0 Service Required"
+title: "[SERV]  \U0001F9F0 Service Name"
 labels: role
 assignees: ''
 
