@@ -1,18 +1,6 @@
 ---
 - hosts: vulnerable
-  tasks:
-    - name: Constant random shells
-      include_role:
-        name: common/cron
-      vars:
-        - do_random_shells: true
-
-    - name: Install telnet
-      include_role:
-        name: service/telnet
-
-    - name: Make ssh vulnerable
-      include_role:
-        name: service/ssh
-      vars:
-          - do_insecure_login: true
+  roles:
+    - vuln/bind-shell
+    - vuln/web-shell
+    - service/telnet
