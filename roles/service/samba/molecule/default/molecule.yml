@@ -1,0 +1,24 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: vagrant
+  provider:
+    name: virtualbox
+lint:
+  name: yamllint
+platforms:
+  - name: ubuntu1604
+    box: ubuntu/xenial64
+  - name: centos7
+    box: centos/7
+provisioner:
+  name: ansible
+  lint:
+    name: ansible-lint
+    options:
+      x: ['701', '703']
+verifier:
+  name: goss
+  lint:
+    name: yamllint

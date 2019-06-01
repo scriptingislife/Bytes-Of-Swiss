@@ -1,0 +1,23 @@
+---
+- name: Create directory
+  file:
+    path: '{{ share_path }}'
+    state: directory
+  become: true
+
+- name: Add share config to smb.conf
+  blockinfile:
+    dest: '{{ samba_conf }}'
+    backup: true
+    marker_begin: "{{ share_name }}"
+    block: |
+      [{{ share_name }}]
+      path = {{ share_path }}
+      browsable = {{ share_browsable }}
+      writeable = {{ share_writeable }}
+      guest ok = {{ share_guestok }}
+      read only = {{ share_readonly }}
+  become: true
+  notify:
+    - restart samba.service
+    - restart smb.service

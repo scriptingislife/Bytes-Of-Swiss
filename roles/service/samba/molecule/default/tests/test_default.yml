@@ -1,0 +1,6 @@
+---
+port:
+  tcp:139:
+    listening: true
+  tcp:445:
+    listening: true

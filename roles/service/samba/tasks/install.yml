@@ -1,0 +1,6 @@
+---
+- name: Install the samba package
+  package:
+    name: 'samba'
+    state: present
+  become: true
