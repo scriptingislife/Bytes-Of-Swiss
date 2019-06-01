@@ -1,0 +1,16 @@
+---
+# handlers file for samba
+- name: restart samba.service
+  service:
+    name: samba
+    state: restarted
+  become: true
+  when: ansible_os_family == "Debian"
+
+- name: restart smb.service
+  service:
+    name: smb
+    enabled: true
+    state: restarted
+  become: true
+  when: ansible_os_family == "RedHat"

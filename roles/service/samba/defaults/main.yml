@@ -1,0 +1,10 @@
+---
+# defaults file for samba
+samba_conf: '/etc/samba/smb.conf'
+share_path: '/samba/test'
+share_name: 'Test Share'
+share_browsable: 'yes'
+share_writeable: 'no'
+share_guestok: 'yes'
+share_readonly: 'yes'
+make_share: true

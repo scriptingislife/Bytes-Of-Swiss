@@ -8,16 +8,20 @@ driver:
 lint:
   name: yamllint
 platforms:
-  - name: instance
+  - name: ubuntu1604
     box: ubuntu/xenial64
     instance_raw_config_args:
-      - "vm.network 'forwarded_port', guest: 8080, host: 8080"
+      - "vm.network 'forwarded_port', guest: 8080, host: 4880"
+  - name: centos7
+    box: centos/7
+    instance_raw_config_args:
+      - "vm.network 'forwarded_port', guest: 8080, host: 5880"
 provisioner:
   name: ansible
   lint:
     name: ansible-lint
-scenario:
-  name: default
+    options:
+      x: ['701', '703']
 verifier:
   name: goss
   lint:

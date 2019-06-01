@@ -1,29 +1,13 @@
 ---
-# install the ftp service
-- name: Update apt and install vsftp server
-  apt:
-    name: vsftpd
-    update_cache: true
-  when: ansible_os_family == "Debian"
+- name: "Install {{ server_type }}"
+  package:
+    name: "{{ server_type }}"
+    state: present
   become: true
 
-- name: Update yum and install vsftp server
-  yum:
-    name: vsftpd
-    update_cache: true
-  when: ansible_os_family == "RedHat"
-  become: true
-
-- name: Modify banner
-  lineinfile:
-    path: "{{ config_file }}"
-    regexp: "^#ftpd_banner="
-    line: "ftpd_banner={{ banner }}"
-  become: true
-
-- name: Start ftp server
+- name: Start FTP server
   service:
-    name: vsftpd
+    name: "{{ server_type }}"
     enabled: true
-    state: restarted
+    state: started
   become: true

@@ -1,12 +1,12 @@
-Role Name
+telnet
 =========
 
-Install a telnet server.
+Installs a telnet server.
 
 Requirements
 ------------
 
-Tested on Ubuntu 16.04.
+None.
 
 Role Variables
 --------------
@@ -25,7 +25,7 @@ Example Playbook
       roles:
          - telnet
 
-License
--------
+Author Information
+------------------
 
-BSD
+Nathaniel Beckstead @becksteadn

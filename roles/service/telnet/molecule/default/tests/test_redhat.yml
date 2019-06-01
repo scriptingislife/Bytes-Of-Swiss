@@ -1,0 +1,11 @@
+---
+# Tests for RedHat and CentOS operating systems
+package:
+  telnet-server:
+    installed: true
+  xinetd:
+    installed: true
+
+port:
+  tcp6:23:
+    listening: true

@@ -1,18 +1,24 @@
-Role Name
+tomcat
 =========
 
-Installs Apache tomcaat and create a tomcat user.
+Installs an Apache Tomcat server.
 
 Requirements
 ------------
 
-Tested on Ubuntu 16.04.
+None.
 
 Role Variables
 --------------
 
-* **tomcat_dir** - Directory to place tomcat files
-* **tomcat_passwd** - Plaintext password for `tomcat` user
+```
+tomcat_dir
+  Directory in which to install Tomcat. (Default - /opt/tomcat)
+tomcat_passwd
+  Admin password for Tomcat. (Default - s3cret)
+tomcat_version
+  Version to install. (Default - 9.0.14)
+```
 
 Dependencies
 ------------
@@ -24,9 +30,9 @@ Example Playbook
 
     - hosts: servers
       roles:
-         - { role: tomcat, tomcat_passwd: 'changeme' }
+         - { role: tomcat, tomcat_passwd: 'letmein' }
 
-License
--------
+Author Information
+------------------
 
-BSD
+Nathaniel Beckstead @becksteadn

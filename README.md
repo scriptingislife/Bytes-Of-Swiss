@@ -1,30 +1,50 @@
 # Bytes of Swiss
 
-I'd like this to be a library of no frills Ansible roles that can be combined to make a vulnerable virtual machine. Vulnerabilities can be made as a new task in the corresponding role (HTTP, samba) and enabled using a variable when the role in included in the playbook.
+Bytes of Swiss is a library of no frills Ansible roles that can be combined to make a vulnerable virtual machine. This can be used for cybersecurity King of the Hill competitions, penetration testing practice, or to test both offensive and defense tools. 
+
+Vulnerabities are located in `roles/vuln` and pull in services like an FTP server or database from `roles/service` as needed.  
 
 All roles are tested with [Molecule](https://molecule.readthedocs.io/en/latest/) and [Vagrant](https://www.vagrantup.com/).
 
 ## Example 
 
-This makes an existing machine vulnerable by making a new bind shell every minute, running telnet, and removing authentication for SSH by altering PAM.
+This makes an existing machine vulnerable by making a new bind shell every minute, creating a PHP shell, and running telnet.
 
 ```
 ---
 - hosts: vulnerable
-  tasks:
-    - name: Constant random shells
-      include_role:
-        name: common/cron
-      vars:
-        - do_random_shells: true
-
-    - name: Install telnet
-      include_role:
-        name: service/telnet
-
-    - name: Make ssh vulnerable
-      include_role:
-        name: service/ssh
-      vars:
-          - do_insecure_login: true
+  roles:
+    - vuln/bind-shell
+    - vuln/web-shell
+    - service/telnet
 ```
+
+### Try It Out
+
+Download the repository.
+
+`git clone https://github.com/becksteadn/Bytes-Of-Swiss.git`
+
+Start the example VM with Vagrant
+
+`vagrant up`
+
+Run the example playbook.
+
+`ansible-playbook -i vagrant.ini example.yml`
+
+Exploit the machine.
+
+* Web shell
+  * `curl localhost:8080/cmd.php?cmd=cat%20/etc/passwd`
+* Telnet
+  * `telnet localhost 2323`
+  * Log in with `vagrant:vagrant`
+* Bind shell
+  * `vagrant ssh`
+  * `sudo netstat -tunlp`
+  * Observe the processes listening on high ports. Connect to one with `nc` and run some bash commands. 
+
+## Contributing
+
+Any help or suggestions are greatly appreciated! Check out `CONTRIBUTING.md` for details.

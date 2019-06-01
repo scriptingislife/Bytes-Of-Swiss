@@ -1,0 +1,34 @@
+---
+- name: Download and unpack bash tar.gz
+  unarchive:
+    src: "https://ftp.gnu.org/gnu/bash/bash-{{ bash_version }}.tar.gz"
+    dest: /tmp/
+    remote_src: true
+
+- name: Install dependencies for compiling
+  package:
+    name: ['gcc', 'make', 'byacc']
+  become: true
+
+- name: Test if bash has already been compiled
+  stat:
+    path: /tmp/bash-{{ bash_version }}/bash
+  register: compilation
+
+- name: Run ./configure
+  command: ./configure
+  args:
+    chdir: /tmp/bash-{{ bash_version }}
+  when: not compilation.stat.exists
+
+- name: make bash
+  make:
+    chdir: /tmp/bash-{{ bash_version }}
+  when: not compilation.stat.exists
+
+- name: Copy compiled bash binary to /bin/bash
+  copy:
+    src: "/tmp/bash-{{ bash_version }}/bash"
+    dest: /bin/bash
+    remote_src: true
+  become: true

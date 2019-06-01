@@ -1,19 +1,20 @@
-Role Name
+ssh
 =========
 
-Installs OpenSSH server and creates several vulnerabilities. 
+Install an SSH server.
 
 Requirements
 ------------
 
-Tested on Ubuntu 16.04.
+None.
 
 Role Variables
 --------------
 
-* **testing** - Run all tasks in main.yml
-* **do_insecure_login** - Modify PAM to allow login with no password
-* **sshd_config** - Configuration file for sshd
+```
+server_type
+  Kind of SSH server to install. (Default - openssh-server)
+```
 
 Dependencies
 ------------
@@ -25,9 +26,9 @@ Example Playbook
 
     - hosts: servers
       roles:
-         - { role: ssh, do_insecure_login: true }
+         - ssh
 
-License
--------
+Author Information
+------------------
 
-BSD
+Nathaniel Beckstead @becksteadn

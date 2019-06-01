@@ -1,3 +1,4 @@
 ---
-- name: Install the service
+# tasks file for redis
+- name: Install Redis server
   include_tasks: install.yml

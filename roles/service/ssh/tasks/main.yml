@@ -1,8 +1,13 @@
 ---
 # tasks file for ssh
-- name: Install service
-  include_tasks: install.yml
+- name: "Install {{ server_type }}"
+  package:
+    name: openssh-server
+  become: true
 
-- name: Enable insecure login
-  include_tasks: insecure_login.yml
-  when: do_insecure_login or testing
+- name: Start SSH server
+  service:
+    name: sshd
+    enabled: true
+    state: started
+  become: true

@@ -1,0 +1,15 @@
+---
+# tasks file for samba
+- name: Install samba server
+  include_tasks: install.yml
+
+- name: Create /samba directory
+  file:
+    path: '/samba'
+    state: directory
+  become: true
+
+- name: Create test share
+  include_tasks: make-share.yml
+  become: true
+  when: make_share

@@ -11,11 +11,11 @@ platforms:
   - name: ubuntu1604
     box: ubuntu/xenial64
     instance_raw_config_args:
-      - "vm.network 'forwarded_port', guest: 80, host: 5001"
+      - "vm.network 'forwarded_port', guest: 80, host: 4080"
   - name: centos7
     box: centos/7
     instance_raw_config_args:
-      - "vm.network 'forwarded_port', guest: 80, host: 5002"
+      - "vm.network 'forwarded_port', guest: 80, host: 5080"
 provisioner:
   name: ansible
   lint:

@@ -1,0 +1,19 @@
+---
+- name: Copy fake-data dir to remote
+  copy:
+    src: fake-data
+    dest: /tmp/
+
+- name: Find fake .sql files
+  shell: "ls /tmp/fake-data/*.sql"
+  register: fake_tables
+
+- name: Import databases
+  mysql_db:
+    login_user: root
+    login_password: '{{ root_passwd }}'
+    name: '{{ db_name }}'
+    state: import
+    target: "/tmp/fake-data/{{ item }}"
+    with_items: "{{ fake_tables.stdout_lines }}"
+  become: true

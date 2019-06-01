@@ -1,10 +1,4 @@
 ---
-- name: Ensure openssh-server is installed
-  package:
-    name: openssh-server
-    state: present
-  become: true
-
 - name: Modify sshd_config
   block:
     - name: PermitRootLogin yes

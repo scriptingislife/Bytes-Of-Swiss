@@ -1,17 +1,17 @@
-Role Name
+redis
 =========
 
-Installs and starts a redis server.
+Installs the Redis server.
 
 Requirements
 ------------
 
-Tested on Ubuntu 16.04.
+None.
 
 Role Variables
 --------------
 
-* **redis_port** - Port to listen on. 6379 by default.
+None.
 
 Dependencies
 ------------
@@ -23,9 +23,9 @@ Example Playbook
 
     - hosts: servers
       roles:
-         - { role: redis, redis_port: 7739 }
+         - redis
 
-License
--------
+Author Information
+------------------
 
-BSD
+Nathaniel Beckstead @becksteadn

@@ -1,0 +1,22 @@
+---
+- name: "Install {{ server_type }}-server with apt"
+  apt:
+    name: "{{ server_type }}-server"
+    update_cache: true
+    state: present
+  become: true
+  when: ansible_os_family == "Debian"
+
+- name: "Install {{ server_type }}-server with yum"
+  yum:
+    name: "{% if server_type == 'mysql' %}{{ mysql_rpm_url }}{% else %}{{ server_type }}-server{% endif %}"
+    state: present
+  become: true
+  when: ansible_os_family == "RedHat"
+
+- name: "Start the {{ server_type }} service"
+  service:
+    name: "{{ server_type }}"
+    enabled: true
+    state: started
+  become: true

@@ -1,12 +1,12 @@
 ---
 # tasks file for ftp
-- name: Install the service
+- name: Install FTP server
   include_tasks: install.yml
 
-- name: Enable anonymous login
-  include_tasks: anonymous_login.yml
-  when: do_allow_anonymous or testing
-
-- name: Enable user upload
-  include_tasks: write_enable.yml
-  when: do_write_enable or testing
+- name: Modify FTP banner
+  lineinfile:
+    path: "{{ ftp_config_path[server_type][ansible_os_family | lower] }}"
+    regexp: "^#ftpd_banner="
+    line: "ftpd_banner={{ ftp_banner }}"
+  become: true
+  notify: restart ftp

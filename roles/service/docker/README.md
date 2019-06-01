@@ -1,12 +1,12 @@
-Role Name
+docker
 =========
 
-Installs Docker. Can be used as a target itself or for running vulnerable containers.
+Install docker-ce and docker-compose.
 
 Requirements
 ------------
 
-Tested on Ubuntu 16.04.
+None.
 
 Role Variables
 --------------
@@ -25,7 +25,7 @@ Example Playbook
       roles:
          - docker
 
-License
--------
+Author Information
+------------------
 
-BSD
+Nathaniel Beckstead @becksteadn

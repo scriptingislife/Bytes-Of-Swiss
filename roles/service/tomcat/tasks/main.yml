@@ -1,4 +1,4 @@
 ---
 # tasks file for tomcat
-- name: Install the service
+- name: Install Apache tomcat
   include_tasks: install.yml

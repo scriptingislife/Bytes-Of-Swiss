@@ -1,0 +1,4 @@
+---
+# defaults file for shellshock
+bash_version: '3.0'
+cgi_script: uptime.sh

@@ -1,14 +1,7 @@
 ---
-file:
-  /etc/vsftpd.conf:
-    exists: true
-    owner: root
-    group: root
-
-service:
+package:
   vsftpd:
-    enabled: true
-    running: true
+    installed: true
 
 port:
   tcp6:21:

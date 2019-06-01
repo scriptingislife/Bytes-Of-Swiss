@@ -1,0 +1,7 @@
+---
+# handlers file for database
+- name: restart server
+  service:
+    name: "{{ server_type }}"
+    state: restarted
+  become: true

@@ -1,4 +1,22 @@
 ---
-# tasks file for telnet
-- name: Install the service
-  include_tasks: install.yml
+# install the telnet service
+- name: Install telnet server with apt
+  apt:
+    name: 'telnetd'
+    update_cache: true
+  become: true
+  when: ansible_os_family == "Debian"
+
+# TODO: See if xinetd is needed
+- name: Install telnet server with yum
+  yum:
+    name: ['telnet', 'telnet-server', 'xinetd']
+    update_cache: true
+  become: true
+  when: ansible_os_family == "RedHat"
+
+# TODO: Make idempotent
+- name: Start telnet server
+  command: "systemctl start telnet.socket"
+  become: true
+  when: ansible_os_family == "RedHat"

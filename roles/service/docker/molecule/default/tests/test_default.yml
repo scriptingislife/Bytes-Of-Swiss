@@ -1,12 +1,4 @@
 ---
-file:
-  /etc/systemd/system/docker.service.d/startup_options.conf:
-    exists: true
-
-port:
-  tcp:2376:
-    listening: true
-
-group:
-  docker:
-    exists: true
+package:
+  docker-ce:
+    installed: true

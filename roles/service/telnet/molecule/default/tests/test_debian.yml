@@ -1,0 +1,9 @@
+---
+# Tests for Debian operating systems
+package:
+  telnetd:
+    installed: true
+
+port:
+  tcp:23:
+    listening: true

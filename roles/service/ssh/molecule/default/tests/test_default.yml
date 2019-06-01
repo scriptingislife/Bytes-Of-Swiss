@@ -1,15 +1,6 @@
+# Molecule managed
+
 ---
-file:
-  /etc/ssh/sshd_config:
-    exists: true
-    owner: root
-    group: root
-
-service:
-  sshd:
-    enabled: true
-    running: true
-
 port:
-  tcp:22:
+  tcp6:22:
     listening: true
