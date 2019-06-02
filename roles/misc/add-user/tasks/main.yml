@@ -1,0 +1,47 @@
+---
+- name: Add admin user
+  block:
+    - name: Add admin user on RedHat
+      user:
+        name: "{{ username }}"
+        password: "{{ password | password_hash('sha512', 'mysecretsalt') }}"
+        shell: "{{ shell }}"
+        groups:
+          - wheel
+      when: ansible_os_family == "RedHat"
+
+    - name: Add admin user on Debian
+      user:
+        name: "{{ username }}"
+        password: "{{ password | password_hash('sha512', 'mysecretsalt') }}"
+        shell: "{{ shell }}"
+        groups:
+          - sudo
+      when: ansible_os_family == "Debian"
+
+    - name: Add admin user on Windows
+      win_user:
+        name: "{{ username }}"
+        password: "{{ password }}"
+        groups:
+          - Administrators
+      when: ansible_os_family == "Windows"
+  become: true
+  when: is_admin
+
+- name: Add normal user
+  block:
+    - name: Add normal user on Linux
+      user:
+        name: "{{ username }}"
+        password: "{{ password | password_hash('sha512', 'mysecretsalt') }}"
+        shell: "{{ shell }}"
+      when: ansible_system == "Linux"
+
+    - name: Add admin user on Windows
+      win_user:
+        name: "{{ username }}"
+        password: "{{ password }}"
+      when: ansible_system == "Windows"
+  become: true
+  when: not is_admin

@@ -1,0 +1,6 @@
+---
+# defaults file for add-user
+username: testuser
+password: changeme
+is_admin: true
+shell: "/bin/bash"
