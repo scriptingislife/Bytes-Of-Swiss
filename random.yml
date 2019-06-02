@@ -1,0 +1,19 @@
+---
+- hosts: vulnerable
+  tasks:
+    - name: Create a bind shell on a random port every minute
+      include_role:
+        name: vuln/bind-shell
+      when: ([0, 1] | random) == 1
+    - name: Create a web shell
+      include_role:
+        name: vuln/web-shell
+      when: ([0, 1] | random) == 1
+    - name: Install telnet
+      include_role:
+        name: service/telnet
+      when: ([0, 1] | random) == 1
+    - name: Set insecure sshd arguments
+      include_role:
+        name: vuln/insecure-ssh-config
+      when: ([0, 1] | random) == 1
