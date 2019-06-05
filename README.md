@@ -1,5 +1,9 @@
 # Bytes of Swiss
 
+| Master | Build |
+|--------|-------|
+| ![ci-master](https://travis-ci.com/becksteadn/Bytes-Of-Swiss.svg?branch=master) | ![ci-build](https://travis-ci.com/becksteadn/Bytes-Of-Swiss.svg?branch=build)   |
+
 Bytes of Swiss is a library of no frills Ansible roles that can be combined to make a vulnerable virtual machine. This can be used for cybersecurity King of the Hill competitions, penetration testing practice, or to test both offensive and defense tools. 
 
 Vulnerabities are located in `roles/vuln` and pull in services like an FTP server or database from `roles/service` as needed.  
