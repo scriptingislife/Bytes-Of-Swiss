@@ -6,7 +6,7 @@ jobs:
       - image: circleci/python:3.7.3
     steps:
       - checkout
-      - run: pip install --user molecule docker
+      - run: sudo pip install molecule docker
       - run: for D in roles/misc/*; do (cd $D && molecule lint); done
       - run: for D in roles/service/*; do (cd $D && molecule lint); done
       - run: for D in roles/vuln/*; do (cd $D && molecule lint); done
