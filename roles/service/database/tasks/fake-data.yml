@@ -3,10 +3,12 @@
   copy:
     src: fake-data
     dest: /tmp/
+  register: copied
 
 - name: Find fake .sql files
   shell: "ls /tmp/fake-data/*.sql"
   register: fake_tables
+  when: copied.changed
 
 - name: Import databases
   mysql_db:
