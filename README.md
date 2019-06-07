@@ -2,7 +2,7 @@
 
 | Master | Build |
 |--------|-------|
-| ![ci-master](https://travis-ci.com/becksteadn/Bytes-Of-Swiss.svg?branch=master) | ![ci-build](https://travis-ci.com/becksteadn/Bytes-Of-Swiss.svg?branch=build)   |
+| [![Master](https://circleci.com/gh/becksteadn/Bytes-Of-Swiss/tree/master.svg?style=svg)](https://circleci.com/gh/becksteadn/Bytes-Of-Swiss/tree/master) | [![Build](https://circleci.com/gh/becksteadn/Bytes-Of-Swiss/tree/build.svg?style=svg)](https://circleci.com/gh/becksteadn/Bytes-Of-Swiss/tree/build)   |
 
 Bytes of Swiss is a library of no frills Ansible roles that can be combined to make a vulnerable virtual machine. This can be used for cybersecurity King of the Hill competitions, penetration testing practice, or to test both offensive and defense tools. 
 

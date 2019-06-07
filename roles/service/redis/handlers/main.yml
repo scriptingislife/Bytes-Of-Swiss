@@ -1,2 +1,7 @@
 ---
 # handlers file for redis
+- name: test redis status
+  command: redis-cli ping
+  register: rdping
+  failed_when: rdping.stdout != "PONG"
+

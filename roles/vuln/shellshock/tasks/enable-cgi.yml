@@ -1,6 +1,6 @@
 ---
 - name: "Enable cgi-bin for Debian"
-  block: 
+  block:
     - name: Enable cgi-bin module
       file:
         src: "/etc/apache2/mods-available/cgi.load"
@@ -31,7 +31,7 @@
         path: "/etc/httpd/conf/httpd.conf"
         line: "LoadModule cgi_module modules/mod_cgi.so"
       register: enable_cgi_httpd
-  
+
     - name: Reload httpd
       service:
         name: httpd
