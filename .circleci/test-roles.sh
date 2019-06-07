@@ -15,6 +15,6 @@ do
 
             cd $PROJECT_DIR
         else
-            echo "Role $D changed since last test. Skipping..."
+            echo "Role $D not changed since last test. Skipping..."
     fi
 done
