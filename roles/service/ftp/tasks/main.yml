@@ -3,7 +3,7 @@
 - name: Install FTP server
   include_tasks: install.yml
 
-- name: Modify FTP banner
+- name: Modify the FTP banner
   lineinfile:
     path: "{{ ftp_config_path[server_type][ansible_os_family | lower] }}"
     regexp: "^#ftpd_banner="
