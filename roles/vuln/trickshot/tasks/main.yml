@@ -7,7 +7,11 @@
 
 - name: Compile trickshot.c with gcc
   command: gcc -I/usr/include/mysql -shared -fPIC -o tg.so /tmp/trickshot.c
+  args:
+    creates: tg.so
 
 - name: Move trickshot to plugins dir
   command: cp -f tg.so /usr/lib/mysql/plugin/
+  args:
+    creates: /usr/lib/mysql/plugin/tg.so
   become: true

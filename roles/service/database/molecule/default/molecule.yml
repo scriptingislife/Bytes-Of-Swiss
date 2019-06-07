@@ -21,7 +21,7 @@ provisioner:
   lint:
     name: ansible-lint
     options:
-      x: ['701', '703']
+      x: ['701', '703', '503']
 verifier:
   name: goss
   lint:
