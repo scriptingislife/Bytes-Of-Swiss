@@ -6,4 +6,5 @@ jobs:
       - image: circleci/python:3.7.3
     steps:
       - checkout
+      - run: sudo pip install molecule docker
       - run: .circleci/test-roles.sh
