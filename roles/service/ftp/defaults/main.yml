@@ -5,4 +5,7 @@ ftp_config_path:
   vsftpd:
     debian: /etc/vsftpd.conf
     redhat: /etc/vsftpd/vsftpd.conf
+  pure-ftpd:
+    debian: /etc/pure-ftpd/conf/
+    redhat: /etc/pure-ftpd/conf/
 ftp_banner: "Welcome to my secure FTP server"
