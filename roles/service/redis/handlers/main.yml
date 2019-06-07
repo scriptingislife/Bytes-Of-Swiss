@@ -4,4 +4,3 @@
   command: redis-cli ping
   register: rdping
   failed_when: rdping.stdout != "PONG"
-

@@ -14,6 +14,7 @@ Role Variables
 ```
 server_type
   vsftpd - Installs the vsftpd FTP server
+  pure-ftpd - Installs the pure-ftpd FTP server
 ftp_banner
   Message to display on connect
 ```
