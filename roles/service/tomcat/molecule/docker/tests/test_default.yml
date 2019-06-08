@@ -1,5 +1,4 @@
 ---
-# Tests for Debian operating systems
 file:
   /etc/hosts:
     exists: true
