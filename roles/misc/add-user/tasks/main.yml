@@ -27,7 +27,7 @@
           - Administrators
       when: ansible_os_family == "Windows"
   become: true
-  when: is_admin
+  when: is_admin | bool
 
 - name: Add normal user
   block:
@@ -44,4 +44,4 @@
         password: "{{ password }}"
       when: ansible_system == "Windows"
   become: true
-  when: not is_admin
+  when: not is_admin | bool

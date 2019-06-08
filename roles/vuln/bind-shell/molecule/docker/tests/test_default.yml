@@ -1,0 +1,12 @@
+---
+package:
+  {% if ansible_os_family == "Debian" %}
+  netcat-traditional:
+  {% else %}
+  nc:
+  {% endif %}
+    installed: true
+
+package:
+  netcat-openbsd:
+    installed: false

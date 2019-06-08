@@ -1,0 +1,4 @@
+---
+port:
+  tcp6:25:
+    listening: true

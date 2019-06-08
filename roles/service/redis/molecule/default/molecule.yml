@@ -10,8 +10,6 @@ lint:
 platforms:
   - name: ubuntu1604
     box: ubuntu/xenial64
-    instance_raw_config_args:
-      - "vm.network 'forwarded_port', guest: 80, host: 8090"
   - name: centos7
     box: centos/7
 provisioner:

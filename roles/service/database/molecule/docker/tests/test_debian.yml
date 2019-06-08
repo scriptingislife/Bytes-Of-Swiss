@@ -1,0 +1,5 @@
+---
+# Tests for Debian operating systems
+package:
+  mysql-server:
+    installed: true

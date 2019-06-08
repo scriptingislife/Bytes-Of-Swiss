@@ -1,12 +1,13 @@
 # Bytes of Swiss
 
-| Master | Build |
-|--------|-------|
-| [![Master](https://circleci.com/gh/becksteadn/Bytes-Of-Swiss/tree/master.svg?style=svg)](https://circleci.com/gh/becksteadn/Bytes-Of-Swiss/tree/master) | [![Build](https://circleci.com/gh/becksteadn/Bytes-Of-Swiss/tree/build.svg?style=svg)](https://circleci.com/gh/becksteadn/Bytes-Of-Swiss/tree/build)   |
+| |  |  |
+|--------|--------|-------|
+| Master | [![Master](https://circleci.com/gh/becksteadn/Bytes-Of-Swiss/tree/master.svg?style=svg)](https://circleci.com/gh/becksteadn/Bytes-Of-Swiss/tree/master) | [![Build status](https://ci.appveyor.com/api/projects/status/q1rarjol6yxy1g4t/branh/master?svg=true)](https://ci.appveyor.com/project/becksteadn/bytes-of-swiss/branch/master) |
+| Build | [![Build](https://circleci.com/gh/becksteadn/Bytes-Of-Swiss/tree/build.svg?style=svg)](https://circleci.com/gh/becksteadn/Bytes-Of-Swiss/tree/build) | [![Build status](https://ci.appveyor.com/api/projects/status/q1rarjol6yxy1g4t/branch/build?svg=true)](https://ci.appveyor.com/project/becksteadn/bytes-of-swiss/branch/build) |    
 
 Bytes of Swiss is a library of no frills Ansible roles that can be combined to make a vulnerable virtual machine. This can be used for cybersecurity King of the Hill competitions, penetration testing practice, or to test both offensive and defense tools. 
 
-Vulnerabities are located in `roles/vuln` and pull in services like an FTP server or database from `roles/service` as needed.  
+Vulnerabities are located in `roles/vuln` and pull in services like an FTP server or database from `roles/service` as needed. The `roles/misc` directory contains helper roles like adding a new user.  
 
 All roles are tested with [Molecule](https://molecule.readthedocs.io/en/latest/) and [Vagrant](https://www.vagrantup.com/).
 

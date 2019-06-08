@@ -1,0 +1,26 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+lint:
+  name: yamllint
+platforms:
+  - name: ubuntu1604
+    image: ubuntu:16.04
+    published_ports:
+      - 127.0.0.1:4022:22/tcp
+  - name: centos7
+    image: centos:7
+    published_ports:
+      - 127.0.0.1:5022:22/tcp
+provisioner:
+  name: ansible
+  env:
+    ANSIBLE_ROLES_PATH: "../../../../service/"
+  lint:
+    name: ansible-lint
+verifier:
+  name: goss
+  lint:
+    name: yamllint

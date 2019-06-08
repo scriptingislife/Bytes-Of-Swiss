@@ -1,2 +1,5 @@
 ---
-# Tests for RedHat and CentOS operating systems
+# Tests for Debian operating systems
+file:
+  /etc/hosts:
+    exists: true

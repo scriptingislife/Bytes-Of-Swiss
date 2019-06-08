@@ -1,0 +1,12 @@
+version: '0.0.{build}-{branch}'
+image: Ubuntu1804
+platform: x64
+
+install:
+- sudo pip install molecule docker
+- docker version
+- molecule --version
+- ansible --version
+
+build_script:
+- .circleci/test-roles.sh

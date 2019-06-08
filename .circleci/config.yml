@@ -6,5 +6,9 @@ jobs:
       - image: circleci/python:3.7.3
     steps:
       - checkout
+      - setup_remote_docker
       - run: sudo pip install molecule docker
+      - run: docker version
+      - run: molecule --version
+      - run: ansible --version
       - run: .circleci/test-roles.sh

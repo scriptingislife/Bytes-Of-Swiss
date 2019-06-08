@@ -1,0 +1,8 @@
+---
+package:
+  vsftpd:
+    installed: true
+
+port:
+  tcp6:21:
+    listening: true
