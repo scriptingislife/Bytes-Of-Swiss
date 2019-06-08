@@ -1,0 +1,6 @@
+# Molecule managed
+
+---
+package:
+  php:
+    installed: true

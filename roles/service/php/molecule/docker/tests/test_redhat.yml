@@ -1,0 +1,6 @@
+---
+# Tests for RedHat and CentOS operating systems
+service:
+  php-fpm:
+    enabled: true
+    running: true
