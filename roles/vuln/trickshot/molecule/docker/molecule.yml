@@ -16,6 +16,8 @@ platforms:
       - 127.0.0.1:5306:3306/tcp
 provisioner:
   name: ansible
+  env:
+    ANSIBLE_ROLES_PATH: "../../../../service/"
   lint:
     name: ansible-lint
 verifier:

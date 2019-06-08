@@ -3,10 +3,10 @@ insecure-ssh-config
 
 Creates an insecure SSH configuration.
 
-Requirements
+Dependencies
 ------------
 
-None.
+`service/ssh`
 
 Role Variables
 --------------
