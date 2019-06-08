@@ -7,4 +7,7 @@ jobs:
     steps:
       - checkout
       - run: sudo pip install molecule docker
+      - run: docker version
+      - run: molecule --version
+      - run: ansible --version
       - run: .circleci/test-roles.sh
