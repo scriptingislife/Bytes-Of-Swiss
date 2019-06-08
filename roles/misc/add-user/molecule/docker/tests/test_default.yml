@@ -3,3 +3,5 @@ file:
   /etc/passwd:
     exists: true
     contains: ['testuser']
+    owner: root
+    group: root
