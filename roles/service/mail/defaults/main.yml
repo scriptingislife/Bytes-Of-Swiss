@@ -1,3 +1,4 @@
 ---
 # defaults file for mail
 server_type: postfix
+listening_interfaces: '0.0.0.0'

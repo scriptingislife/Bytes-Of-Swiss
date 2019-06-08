@@ -12,7 +12,12 @@ do
             echo "Testing $D..."
             cd $D
 
-            molecule test -s docker || exit 0
+            molecule lint || exit 0
+            molecule syntax || exit 0
+            molecule converge -s docker
+            molecule idempotence -s docker || exit 0
+            molecule verify -s docker
+            molecule destroy -s docker
 
             cd $PROJECT_DIR
             echo "\n\n\n$LINES"
