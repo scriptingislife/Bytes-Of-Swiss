@@ -13,10 +13,10 @@ do
 
             molecule lint || exit 0
             molecule syntax || exit 0
-            molecule --debug converge -s docker
+            molecule converge -s docker
             molecule idempotence -s docker || exit 0
-            molecule --debug verify -s docker || exit 0
-            molecule --debug destroy -s docker
+            molecule verify -s docker || exit 0
+            molecule destroy -s docker
 
             cd $PROJECT_DIR
         else
