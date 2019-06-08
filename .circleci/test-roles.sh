@@ -1,5 +1,6 @@
 #!/bin/bash
 
+LINES="=========================================================================================================="
 PROJECT_DIR=$(pwd)
 LATEST_COMMIT=$(git rev-parse HEAD)
 
@@ -11,14 +12,10 @@ do
             echo "Testing $D..."
             cd $D
 
-            molecule lint || exit 0
-            molecule syntax || exit 0
-            molecule converge -s docker
-            molecule idempotence -s docker || exit 0
-            molecule verify -s docker || exit 0
-            molecule destroy -s docker
+            molecule test -s docker || exit 0
 
             cd $PROJECT_DIR
+            echo "\n\n\n$LINES"
         else
             echo "Role $D not changed since last test. Skipping..."
     fi
