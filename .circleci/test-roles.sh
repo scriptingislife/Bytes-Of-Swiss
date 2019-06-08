@@ -2,7 +2,7 @@
 
 PROJECT_DIR=$(pwd)
 LATEST_COMMIT=$(git rev-parse HEAD)
-FORCE=false # Test $TEST_ROLE role whether its changed or not
+FORCE=true # Test $TEST_ROLE role whether its changed or not
 TEST_ROLE="mail" # Name of role to test
 FAIL=0
 
