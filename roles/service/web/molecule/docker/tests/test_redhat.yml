@@ -1,0 +1,9 @@
+---
+package:
+  httpd:
+    installed: true
+
+service:
+  httpd:
+    enabled: true
+    running: true
