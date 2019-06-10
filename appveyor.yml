@@ -3,7 +3,7 @@ image: Ubuntu1804
 platform: x64
 
 install:
-- sudo pip install molecule docker
+- sudo pip install molecule docker python-vagrant
 - wget https://releases.hashicorp.com/vagrant/2.2.4/vagrant_2.2.4_x86_64.deb && sudo dpkg -i vagrant_2.2.4_x86_64.deb
 - vagrant --version
 - docker version
