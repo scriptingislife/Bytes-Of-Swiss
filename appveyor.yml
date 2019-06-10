@@ -12,3 +12,4 @@ install:
 
 build_script:
 - .testing/test-roles.sh
+- cat /tmp/molecule/ssh/default/vagrant-ubuntu1604.err
