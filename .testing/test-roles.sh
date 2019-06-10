@@ -42,5 +42,7 @@ do
     fi
 done
 
+cat /tmp/molecule/ssh/default/vagrant-ubuntu1604.err
+
 echo $FAIL
 exit $FAIL
