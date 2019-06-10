@@ -3,7 +3,7 @@
 PROJECT_DIR=$(pwd)
 LATEST_COMMIT=$(git rev-parse HEAD)
 FORCE_ALL=false
-TEST_ROLE="none" # Name of role to test. Turn off FORCE_ALL.
+TEST_ROLE="ssh" # Name of role to test. Turn off FORCE_ALL.
 FAIL=0
 
 for D in roles/*/*
@@ -17,10 +17,21 @@ do
             # Only fail if converge or verify fail
             (molecule lint)
             (molecule syntax)
-            molecule converge -s docker || FAIL=2
-            (molecule idempotence -s docker)
-            molecule verify -s docker || FAIL=2
-            (molecule destroy -s docker)
+
+            if [ "$1" ]
+                then
+                    molecule converge -s "$1" || FAIL=2
+                    (molecule idempotence -s "$1")
+                    molecule verify -s "$1" || FAIL=2
+                    (molecule destroy -s "$1")
+                else
+                    molecule converge || FAIL=2
+                    (molecule idempotence)
+                    molecule verify || FAIL=2
+                    (molecule destroy)
+            fi
+
+            
 
             cd $PROJECT_DIR
 

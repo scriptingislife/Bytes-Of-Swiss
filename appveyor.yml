@@ -4,9 +4,11 @@ platform: x64
 
 install:
 - sudo pip install molecule docker
+- wget https://releases.hashicorp.com/vagrant/2.2.4/vagrant_2.2.4_x86_64.deb && sudo dpkg -i vagrant_2.2.4_x86_64.deb
+- vagrant -- version
 - docker version
 - molecule --version
 - ansible --version
 
 build_script:
-- .circleci/test-roles.sh
+- .testing/test-roles.sh
