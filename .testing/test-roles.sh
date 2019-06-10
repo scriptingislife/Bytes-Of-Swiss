@@ -25,7 +25,7 @@ do
                     molecule verify -s "$1" || FAIL=2
                     (molecule destroy -s "$1")
                 else
-                    molecule converge || FAIL=2
+                    molecule --debug converge || FAIL=2
                     (molecule idempotence)
                     molecule verify || FAIL=2
                     (molecule destroy)
