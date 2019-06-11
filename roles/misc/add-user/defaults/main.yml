@@ -4,5 +4,5 @@ username: testuser
 password: changeme
 is_admin: true
 shell: "/bin/bash"
-random_pass: false
+random_pass: true
 pwd_file: "common-pwd.txt"
