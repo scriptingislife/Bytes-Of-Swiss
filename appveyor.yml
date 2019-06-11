@@ -2,11 +2,21 @@ version: '0.0.{build}-{branch}'
 image: Ubuntu1804
 platform: x64
 
+skip_commits:
+  files:
+    - '**/*.md'
+
+cache:
+- /home/appveyor/.vagrant.d/boxes
+
 install:
-- sudo pip install molecule docker
+- sudo pip install molecule docker python-vagrant molecule[vagrant]
+- wget https://releases.hashicorp.com/vagrant/2.2.4/vagrant_2.2.4_x86_64.deb && sudo dpkg -i vagrant_2.2.4_x86_64.deb
+- vagrant --version
+- VBoxManage --version
 - docker version
 - molecule --version
 - ansible --version
 
 build_script:
-- .circleci/test-roles.sh
+- .testing/test-roles.sh

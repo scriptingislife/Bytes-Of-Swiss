@@ -38,10 +38,14 @@
         shell: "{{ shell }}"
       when: ansible_system == "Linux"
 
-    - name: Add admin user on Windows
+    - name: Add normal user on Windows
       win_user:
         name: "{{ username }}"
         password: "{{ password }}"
       when: ansible_system == "Windows"
   become: true
   when: not is_admin | bool
+
+- name: Change password to something insecure
+  include_tasks: insecure-pwd.yml
+  when: random_pass | bool

@@ -11,4 +11,4 @@ jobs:
       - run: docker version
       - run: molecule --version
       - run: ansible --version
-      - run: .circleci/test-roles.sh
+      - run: .testing/test-roles.sh docker

@@ -17,10 +17,21 @@ do
             # Only fail if converge or verify fail
             (molecule lint)
             (molecule syntax)
-            molecule converge -s docker || FAIL=2
-            (molecule idempotence -s docker)
-            molecule verify -s docker || FAIL=2
-            (molecule destroy -s docker)
+
+            if [ "$1" ]
+                then
+                    molecule converge -s "$1" || FAIL=2
+                    (molecule idempotence -s "$1")
+                    molecule verify -s "$1" || FAIL=2
+                    (molecule destroy -s "$1")
+                else
+                    molecule --debug converge || FAIL=2
+                    (molecule idempotence)
+                    molecule verify || FAIL=2
+                    (molecule destroy)
+            fi
+
+            
 
             cd $PROJECT_DIR
 
@@ -30,6 +41,8 @@ do
             echo "Role $D not changed since last test. Skipping..."
     fi
 done
+
+cat /tmp/molecule/ssh/default/vagrant-ubuntu1604.err
 
 echo $FAIL
 exit $FAIL
