@@ -1,11 +1,15 @@
 ---
 - name: Pick random insecure password
   set_fact:
-    mypass: "{{ lookup('file', pwd_file).split('\n') | random | password_hash('sha512', 'mysecretsalt') }}"
+    mypass: "{{ lookup('file', pwd_file).split('\n') | random }}"
 
 - name: Print password
   debug:
     msg: "Insecure password for user {{ username }} is {{ mypass }}"
+
+- name: Hash password
+  set_fact:
+    mypass: "{{ mypass | password_hash('sha512', 'mysecretsalt') }}"
 
 - name: "Change user's password"
   user:
