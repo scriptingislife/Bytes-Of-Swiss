@@ -3,7 +3,7 @@
 PROJECT_DIR=$(pwd)
 LATEST_COMMIT=$(git rev-parse HEAD)
 FORCE_ALL=false
-TEST_ROLE="ssh" # Name of role to test. Turn off FORCE_ALL.
+TEST_ROLE="none" # Name of role to test. Turn off FORCE_ALL.
 FAIL=0
 
 for D in roles/*/*
