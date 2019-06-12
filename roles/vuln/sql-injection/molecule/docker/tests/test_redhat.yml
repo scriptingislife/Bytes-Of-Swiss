@@ -1,0 +1,5 @@
+---
+# Tests for RedHat and CentOS operating systems
+file:
+  /etc/hosts:
+    exists: true
