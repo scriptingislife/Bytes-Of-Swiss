@@ -5,3 +5,6 @@
     src: 'files/{{ shell_name }}'
     dest: '{{ document_root }}/{{ remote_shell_name }}'
   become: true
+  tags:
+    - easy
+    - web

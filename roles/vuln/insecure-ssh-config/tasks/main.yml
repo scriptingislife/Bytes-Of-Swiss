@@ -25,3 +25,6 @@
       notify:
         - restart sshd
   become: true
+  tags:
+    - med
+    - misconfig
