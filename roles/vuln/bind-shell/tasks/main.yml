@@ -4,3 +4,4 @@
   include_tasks: install.yml
   tags:
     - easy
+    - backdoor
