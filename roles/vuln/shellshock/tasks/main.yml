@@ -2,6 +2,12 @@
 # tasks file for shellshock
 - name: Install vulnerable version of Bash
   include_tasks: install.yml
+  tags:
+    - med
+    - web
 
 - name: Enable cgi-bin on web server
   include_tasks: enable-cgi.yml
+  tags:
+    - med
+    - web
