@@ -2,9 +2,10 @@
 
 PROJECT_DIR=$(pwd)
 LATEST_COMMIT=$(git rev-parse HEAD)
-FORCE_ALL=false
+FORCE_ALL=false  # Test all roles whether they've been changed or not.
 TEST_ROLE="none" # Name of role to test. Turn off FORCE_ALL.
-FAIL=0
+RUN_TESTS=false  # Run full testing instead of just linting
+FAIL=0 # Exit status
 
 for D in roles/*/*
 do
@@ -18,7 +19,7 @@ do
             (molecule lint)
             (molecule syntax)
 
-            if [ "$1" ]
+            if [ "$1" ] && [ "$RUN_TESTS" ]
                 then
                     molecule converge -s "$1" || FAIL=2
                     (molecule idempotence -s "$1")
