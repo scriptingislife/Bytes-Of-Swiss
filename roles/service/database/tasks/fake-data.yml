@@ -8,7 +8,7 @@
 - name: Find fake .sql files
   shell: "ls /tmp/fake-data/*.sql"
   register: fake_tables
-  when: copied.changed
+  when: copied is changed
 
 - name: Import databases
   mysql_db:
