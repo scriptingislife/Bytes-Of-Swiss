@@ -1,4 +1,7 @@
 #!/bin/bash
+#
+# Usage: ./test-roles.sh <scenario>
+#
 
 PROJECT_DIR=$(pwd)
 LATEST_COMMIT=$(git rev-parse HEAD)
@@ -19,19 +22,21 @@ do
             (molecule lint)
             (molecule syntax)
 
-            if [ "$1" ] && [ "$RUN_TESTS" ]
+            if [ "$RUN_TESTS" ]
                 then
-                    molecule converge -s "$1" || FAIL=2
-                    (molecule idempotence -s "$1")
-                    molecule verify -s "$1" || FAIL=2
-                    (molecule destroy -s "$1")
-                else
-                    molecule --debug converge || FAIL=2
-                    (molecule idempotence)
-                    molecule verify || FAIL=2
-                    (molecule destroy)
+                    if [ "$1" ] # Test given scenario or the default
+                        then
+                            molecule converge -s "$1" || FAIL=2
+                            (molecule idempotence -s "$1")
+                            molecule verify -s "$1" || FAIL=2
+                            (molecule destroy -s "$1")
+                        else
+                            molecule --debug converge || FAIL=2
+                            (molecule idempotence)
+                            molecule verify || FAIL=2
+                            (molecule destroy)
+                    fi
             fi
-
             
 
             cd $PROJECT_DIR
@@ -42,8 +47,6 @@ do
             echo "Role $D not changed since last test. Skipping..."
     fi
 done
-
-cat /tmp/molecule/ssh/default/vagrant-ubuntu1604.err
 
 echo $FAIL
 exit $FAIL
