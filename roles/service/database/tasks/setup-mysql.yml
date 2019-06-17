@@ -16,6 +16,7 @@
     state: absent
   tags:
     - secure
+  become: true
 
 - name: Remove the test database
   mysql_db:
@@ -23,6 +24,7 @@
     state: absent
   tags:
     - secure
+  become: true
 
 - name: Disable remote access
   block:
@@ -37,6 +39,7 @@
 
     - name: Secures the MySQL root user for server_hostname domain
       mysql_user: user="root" password="{{ db_root_password }}" host="{{ ansible_fqdn }}"
+  become: true
   tags:
     - secure
 
@@ -44,3 +47,4 @@
   mysql_user:
     user: root
     password: "{{ db_root_password }}"
+  become: true

@@ -9,7 +9,8 @@
 
 - name: "Install {{ server_type }}-server with yum"
   yum:
-    name: "{% if server_type == 'mysql' %}{{ mysql_rpm_url }}{% else %}{{ server_type }}-server{% endif %}"
+    #name: "{% if server_type == 'mysql' %}{{ mysql_rpm_url }}{% else %}{{ server_type }}-server{% endif %}"
+    name: "{{ server_type }}-server"
     state: present
   become: true
   when: ansible_os_family == "RedHat"
