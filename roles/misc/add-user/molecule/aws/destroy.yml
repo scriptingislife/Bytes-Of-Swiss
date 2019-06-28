@@ -43,6 +43,7 @@
     - name: Wait for volumes to become available
       pause:
         minutes: 1
+      when: server is changed
 
     - name: Delete EBS volumes if left behind
       ec2_vol:
