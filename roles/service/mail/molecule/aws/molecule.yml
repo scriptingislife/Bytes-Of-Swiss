@@ -1,0 +1,26 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: ec2
+lint:
+  name: yamllint
+platforms:
+  - name: ubuntu1604
+    image: ami-07b4156579ea1d7ba # AMI for us-east-1
+    instance_type: t3a.nano
+    vpc_subnet_id: subnet-0f8b3679
+    ssh_user: ubuntu
+  - name: centos7
+    image: ami-02eac2c0129f6376b # AMI for us-east-1
+    instance_type: t3a.nano
+    vpc_subnet_id: subnet-0f8b3679
+    ssh_user: centos
+provisioner:
+  name: ansible
+  lint:
+    name: ansible-lint
+verifier:
+  name: goss
+  lint:
+    name: yamllint
