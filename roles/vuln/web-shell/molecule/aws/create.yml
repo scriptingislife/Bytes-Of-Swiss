@@ -94,7 +94,7 @@
 
     - name: Print item.item.item
       debug:
-        var: item.item.item
+        var: item['item']['item']
         verbosity: 1
       with_items: "{{ ec2_jobs.results }}"
 
