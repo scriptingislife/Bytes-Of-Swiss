@@ -40,7 +40,7 @@
       retries: 300
       with_items: "{{ server.results }}"
 
-    - name: Wait for volumes to become available
+    - name: Wait for volumes to change from attached to available
       pause:
         minutes: 1
       when: server is changed
