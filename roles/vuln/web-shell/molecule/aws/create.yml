@@ -92,11 +92,13 @@
         var: ec2_jobs
         verbosity: 1
 
-    - name: Print item.item.item
+    - name: Print ssh_user
       debug:
-        var: item['item']['item']
+        var: item.item.item.ssh_user
         verbosity: 1
       with_items: "{{ ec2_jobs.results }}"
+      loop_control:
+        label: "{{ item.item.item.ssh_user }}"
 
     - name: Populate instance config dict
       set_fact:
