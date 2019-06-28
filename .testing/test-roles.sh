@@ -26,7 +26,7 @@ do
                 then
                     if [ "$1" ] # Test given scenario or the default
                         then
-                            molecule converge -s "$1" || FAIL=2
+                            molecule --debug converge -s "$1" || FAIL=2
                             (molecule idempotence -s "$1")
                             molecule verify -s "$1" || FAIL=2
                             (molecule destroy -s "$1")
