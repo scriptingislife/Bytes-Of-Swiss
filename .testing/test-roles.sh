@@ -6,7 +6,7 @@
 PROJECT_DIR=$(pwd)
 LATEST_COMMIT=$(git rev-parse HEAD)
 FORCE_ALL=false  # Test all roles whether they've been changed or not.
-TEST_ROLE="add-user" # Name of role to test. Turn off FORCE_ALL.
+TEST_ROLE="web-shell" # Name of role to test. Turn off FORCE_ALL.
 RUN_TESTS=false  # Run full testing instead of just linting
 FAIL=0 # Exit status
 
@@ -26,12 +26,12 @@ do
                 then
                     if [ "$1" ] # Test given scenario or the default
                         then
-                            molecule --debug converge -s "$1" || FAIL=2
+                            molecule converge -s "$1" || FAIL=2
                             (molecule idempotence -s "$1")
                             molecule verify -s "$1" || FAIL=2
                             (molecule destroy -s "$1")
                         else
-                            molecule --debug converge || FAIL=2
+                            molecule converge || FAIL=2
                             (molecule idempotence)
                             molecule verify || FAIL=2
                             (molecule destroy)
