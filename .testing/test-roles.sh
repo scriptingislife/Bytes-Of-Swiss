@@ -6,7 +6,7 @@
 PROJECT_DIR=$(pwd)
 LATEST_COMMIT=$(git rev-parse HEAD)
 FORCE_ALL=false  # Test all roles whether they've been changed or not.
-TEST_ROLE="none" # Name of role to test. Turn off FORCE_ALL.
+TEST_ROLE="add-user" # Name of role to test. Turn off FORCE_ALL.
 RUN_TESTS=false  # Run full testing instead of just linting
 FAIL=0 # Exit status
 
