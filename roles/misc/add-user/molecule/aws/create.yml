@@ -87,12 +87,17 @@
 
     # Mandatory configuration for Molecule to function.
 
+    - name: Print ec2_jobs
+      debug:
+        var: ec2_jobs
+        verbosity: 1
+
     - name: Populate instance config dict
       set_fact:
         instance_conf_dict: {
           'instance': "{{ item.instances[0].tags.instance }}",
           'address': "{{ item.instances[0].public_ip }}",
-          'user': "{{ item._ansible_item_label.item.ssh_user }}",
+          'user': "{% if item._ansible_item_label.item.ssh_user %}{{ item._ansible_item_label.item.ssh_user }}{% else }{{ item.item.item.ssh_user }}{% endif %}",
           'port': "{{ ssh_port }}",
           'identity_file': "{{ keypair_path }}",
           'instance_ids': "{{ item.instance_ids }}", }
