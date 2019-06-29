@@ -87,11 +87,6 @@
 
     # Mandatory configuration for Molecule to function.
 
-    - name: Print ec2_jobs
-      debug:
-        var: ec2_jobs
-        verbosity: 1
-
     - name: Populate instance config dict
       set_fact:
         instance_conf_dict: {
