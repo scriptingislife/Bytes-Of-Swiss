@@ -7,6 +7,4 @@ jobs:
     steps:
       - checkout
       - run: sudo pip install molecule[ec2]
-      - run: molecule --version
-      - run: ansible --version
       - run: .testing/test-roles.sh aws

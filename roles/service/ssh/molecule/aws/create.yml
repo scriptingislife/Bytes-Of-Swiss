@@ -90,9 +90,10 @@
     - name: Populate instance config dict
       set_fact:
         instance_conf_dict: {
-          'instance': "{{ item.instances[0].tags.instance }}",
-          'address': "{{ item.instances[0].public_ip }}",
-          'user': "{{ item._ansible_item_label.item.ssh_user }}",
+          'instance': "{{ item.tagged_instances[0].tags.instance }}",
+          'address': "{{ item.tagged_instances[0].public_ip }}",
+          #'user': "{% if item._ansible_item_label.item.ssh_user %}{{ item._ansible_item_label.item.ssh_user }}{% else }{{ item.item.item.ssh_user }}{% endif %}",
+          'user': "{{ item.item.item.ssh_user }}",
           'port': "{{ ssh_port }}",
           'identity_file': "{{ keypair_path }}",
           'instance_ids': "{{ item.instance_ids }}", }

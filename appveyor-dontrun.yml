@@ -10,13 +10,9 @@ cache:
 - /home/appveyor/.vagrant.d/boxes
 
 install:
-- sudo pip install molecule docker python-vagrant molecule[vagrant]
-- wget https://releases.hashicorp.com/vagrant/2.2.4/vagrant_2.2.4_x86_64.deb && sudo dpkg -i vagrant_2.2.4_x86_64.deb
-- VBoxManage --version
-- vagrant --version
-- docker version
+- sudo pip install molecule[ec2]
 - molecule --version
 - ansible --version
 
 build_script:
-- .testing/test-roles.sh
+- .testing/test-roles.sh aws

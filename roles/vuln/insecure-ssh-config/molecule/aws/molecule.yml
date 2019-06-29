@@ -18,6 +18,7 @@ platforms:
     ssh_user: centos
 provisioner:
   name: ansible
+  ANSIBLE_ROLES_PATH: "../../../../service/"
   lint:
     name: ansible-lint
 verifier:
